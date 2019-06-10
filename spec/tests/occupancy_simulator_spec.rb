@@ -33,17 +33,15 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require 'bundler/setup'
-require 'openstudio/occupancy_simulator'
+require_relative '../spec_helper'
 
-RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = '.rspec_status'
+RSpec.describe OpenStudio::OccupancySimulator do
+  it 'has a version number' do
+    expect(OpenStudio::OccupancySimulator::VERSION).not_to be nil
+  end
 
-  # Disable RSpec exposing methods globally on `Module` and `main`
-  config.disable_monkey_patching!
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+  it 'has a measures directory' do
+    instance = OpenStudio::OccupancySimulator::OccupancySimulator.new
+    expect(File.exist?(instance.measures_dir)).to be true
   end
 end
