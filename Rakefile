@@ -8,8 +8,8 @@ RuboCop::RakeTask.new
 
 # Load in the rake tasks from the base openstudio-extension gem
 require 'openstudio/extension/rake_task'
-require 'openstudio/occupancy_simulator'
+require 'openstudio/occupant_variability'
 os_extension = OpenStudio::Extension::RakeTask.new
-os_extension.set_extension_class(OpenStudio::OccupancySimulator::OccupancySimulator)
+os_extension.set_extension_class(OpenStudio::OccupantVariability::OccupantVariability)
 
 task default: :spec

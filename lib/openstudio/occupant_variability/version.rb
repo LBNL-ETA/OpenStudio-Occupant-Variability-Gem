@@ -33,18 +33,8 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require 'openstudio/occupancy_simulator/version'
-require 'openstudio/extension'
-
 module OpenStudio
-  module OccupancySimulator
-    class OccupancySimulator < OpenStudio::Extension::Extension
-      # Override parent class
-      def initialize
-        super
-
-        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
-      end
-    end
+  module OccupantVariability
+    VERSION = '0.0.1'.freeze
   end
 end

@@ -33,8 +33,15 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-module OpenStudio
-  module OccupancySimulator
-    VERSION = '0.0.1'.freeze
+require_relative '../spec_helper'
+
+RSpec.describe OpenStudio::OccupantVariability do
+  it 'has a version number' do
+    expect(OpenStudio::OccupantVariability::VERSION).not_to be nil
+  end
+
+  it 'has a measures directory' do
+    instance = OpenStudio::OccupantVariability::OccupantVariability.new
+    expect(File.exist?(instance.measures_dir)).to be true
   end
 end

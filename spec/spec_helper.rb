@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 require 'bundler/setup'
-require 'openstudio/occupancy_simulator'
+require 'openstudio/occupant_variability'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

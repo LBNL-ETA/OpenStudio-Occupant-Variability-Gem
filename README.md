@@ -1,4 +1,4 @@
-# Openstudio Occupancy Simulator Gem
+# Openstudio Occupant Variability Gem
 
 TODO: Add a description of this gem
 
@@ -7,7 +7,7 @@ TODO: Add a description of this gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'openstudio-occupancy-simulator'
+gem 'openstudio-occupant-variability'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install 'openstudio-occupancy-simulator'
+    $ gem install 'openstudio-occupant-variability'
 
 ## Usage
 
@@ -31,7 +31,7 @@ To be filled out later.
 # Releasing
 
 * Update change log
-* Update version in `/lib/openstudio/openstudio-occupancy-simulator/version.rb`
+* Update version in `/lib/openstudio/openstudio-occupant-variability/version.rb`
 * Merge down to master
 * Release via github
 * run `rake release` from master

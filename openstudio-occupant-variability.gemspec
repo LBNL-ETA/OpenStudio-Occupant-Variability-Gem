@@ -1,11 +1,11 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'openstudio/occupancy_simulator/version'
+require 'openstudio/occupant_variability/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'openstudio-occupancy-simulator'
-  spec.version       = OpenStudio::OccupancySimulator::VERSION
+  spec.name          = 'openstudio-occupant-variability'
+  spec.version       = OpenStudio::OccupantVariability::VERSION
   spec.authors       = ['']
   spec.email         = ['']
 

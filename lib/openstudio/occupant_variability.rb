@@ -33,15 +33,18 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require_relative '../spec_helper'
+require 'openstudio/occupant_variability/version'
+require 'openstudio/extension'
 
-RSpec.describe OpenStudio::OccupancySimulator do
-  it 'has a version number' do
-    expect(OpenStudio::OccupancySimulator::VERSION).not_to be nil
-  end
+module OpenStudio
+  module OccupantVariability
+    class OccupantVariability < OpenStudio::Extension::Extension
+      # Override parent class
+      def initialize
+        super
 
-  it 'has a measures directory' do
-    instance = OpenStudio::OccupancySimulator::OccupancySimulator.new
-    expect(File.exist?(instance.measures_dir)).to be true
+        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
+      end
+    end
   end
 end
