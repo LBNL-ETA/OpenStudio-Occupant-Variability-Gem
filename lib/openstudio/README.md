@@ -1,0 +1,1 @@
+# `openstudio` and `openstudio\extension` contain the code related to this gem.
