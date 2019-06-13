@@ -45,6 +45,11 @@ module OpenStudio
 
         @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
       end
+
+      # TODO: add methods for the OccupantVariability class
+      #
     end
+
+    # TODO: add method for the OccupantVariability module
   end
 end
