@@ -12,4 +12,18 @@ require 'openstudio/occupant_variability'
 os_extension = OpenStudio::Extension::RakeTask.new
 os_extension.set_extension_class(OpenStudio::OccupantVariability::OccupantVariability)
 
-task default: :spec
+
+# User defined tasks
+desc 'Try to run some tests'
+task :run_test do
+  puts 'This is a test rake task...'
+  name = 'Occupancy Simulator Test...'
+
+  puts name
+
+end
+
+task :run_all => [:run_test]
+
+
+task default: :run_all

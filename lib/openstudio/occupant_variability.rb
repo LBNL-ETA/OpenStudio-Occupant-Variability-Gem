@@ -33,8 +33,9 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require 'openstudio/occupant_variability/version'
 require 'openstudio/extension'
+require 'openstudio/occupant_variability/version'
+require 'openstudio/occupant_variability/rake_task'
 
 module OpenStudio
   module OccupantVariability

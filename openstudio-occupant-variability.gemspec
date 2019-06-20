@@ -6,8 +6,8 @@ require 'openstudio/occupant_variability/version'
 Gem::Specification.new do |spec|
   spec.name          = 'openstudio-occupant-variability'
   spec.version       = OpenStudio::OccupantVariability::VERSION
-  spec.authors       = ['']
-  spec.email         = ['']
+  spec.authors       = ['Han Li']
+  spec.email         = ['hanli@lbl.gov']
 
   spec.summary       = 'library and measures for OpenStudio'
   spec.description   = 'library and measures for OpenStudio'
