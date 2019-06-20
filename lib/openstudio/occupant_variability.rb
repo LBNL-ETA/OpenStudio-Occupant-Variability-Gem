@@ -36,6 +36,9 @@
 require 'openstudio/extension'
 require 'openstudio/occupant_variability/version'
 require 'openstudio/occupant_variability/rake_task'
+require 'openstudio/occupant_variability/occupant_variability_model'
+require 'openstudio-standards'
+
 
 module OpenStudio
   module OccupantVariability
