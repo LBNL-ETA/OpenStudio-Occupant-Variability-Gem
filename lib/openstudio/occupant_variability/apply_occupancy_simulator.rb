@@ -27,12 +27,15 @@ module OpenStudio
         end
       end
 
-      def create_osw()
+      def create_osw(seed_file_dir, weather_file_dir)
+        # TODO:Add LOD options later
+        puts '~~~ Applying occupant variability measures to the OSW...'
         osw = Marshal.load(Marshal.dump(@@osw))
-
-        puts 'Here we are.'
         OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
-
+        osw[:seed_file=] = seed_file_dir
+        osw[:weather_file=] = weather_file_dir
+        osw[:name] = 'Occupancy Simulator'
+        osw[:description] = 'Occupancy Simulator'
         return osw
       end
 
