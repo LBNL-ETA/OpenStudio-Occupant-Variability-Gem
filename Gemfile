@@ -10,13 +10,13 @@ else
   gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'develop'
 end
 
-# if File.exists?('../OpenStudio-Standards')
-#   # gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'develop'
-#   gem 'openstudio-standards', path: '../OpenStudio-Standards'
-# else
-#   gem 'openstudio-standards', github: 'NREL/OpenStudio-Standards', branch: 'master'
-# end
-gem 'openstudio-standards', github: 'NREL/OpenStudio-Standards', branch: 'master'
+if File.exists?('../OpenStudio-Standards')
+  # gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'develop'
+  gem 'openstudio-standards', path: '../OpenStudio-Standards'
+else
+  gem 'openstudio-standards', github: 'NREL/OpenStudio-Standards', branch: 'master'
+end
+# gem 'openstudio-standards', github: 'NREL/OpenStudio-Standards', branch: 'master'
 
 
 gem 'openstudio_measure_tester', '= 0.1.7' # This includes the dependencies for running unit tests, coverage, and rubocop

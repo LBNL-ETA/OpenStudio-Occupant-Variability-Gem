@@ -34,10 +34,14 @@
 # *******************************************************************************
 
 require 'openstudio/extension'
-require 'openstudio/occupant_variability/version'
-require 'openstudio/occupant_variability/rake_task'
-require 'openstudio/occupant_variability/occupant_variability_model'
 require 'openstudio-standards'
+
+require 'openstudio/occupant_variability/extension'
+require 'openstudio/occupant_variability/occupant_variability_model'
+require 'openstudio/occupant_variability/apply_occupancy_simulator'
+require 'openstudio/occupant_variability/rake_task'
+require 'openstudio/occupant_variability/runner'
+require 'openstudio/occupant_variability/version'
 
 
 module OpenStudio
