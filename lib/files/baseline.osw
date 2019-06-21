@@ -1,0 +1,106 @@
+{
+    "weather_file": "in.epw",
+    "seed_file": "in.osm",
+    "steps": [
+        // Apply occupant related measures
+        // {
+        //     "measure_dir_name": "Occupancy_Simulator",
+        //     "arguments": {}
+        // },
+        // {
+        //     "measure_dir_name": "create_lighting_schedule",
+        //     "arguments": {}
+        // },
+        // {
+        //     "measure_dir_name": "create_mels_schedule_from_occupant_count",
+        //     "arguments": {}
+        // },
+        // {
+        //     "measure_dir_name": "update_hvac_setpoint_schedule",
+        //     "arguments": {}
+        // },
+
+        // Add output variables
+        {
+            "measure_dir_name": "AddOutputVariable",
+            "arguments": {
+                "variable_name": "Zone People Occupant Count",
+                "reporting_frequency" : "timestep",
+                "key_value" : "*"
+            }
+        },
+        {
+            "measure_dir_name": "AddOutputVariable",
+            "arguments": {
+                "variable_name": "Zone Mean Air Temperature",
+                "reporting_frequency" : "timestep",
+                "key_value" : "*"
+            }
+        },
+
+        // Add meters
+        {
+            "measure_dir_name": "AddMeter",
+            "arguments": {
+                "meter_name": "Electricity:Facility",
+                "reporting_frequency" : "timestep"
+            }
+        },
+        {
+            "measure_dir_name": "AddMeter",
+            "arguments": {
+                "meter_name": "InteriorLights:Electricity",
+                "reporting_frequency" : "timestep"
+            }
+        },
+        {
+            "measure_dir_name": "AddMeter",
+            "arguments": {
+                "meter_name": "InteriorEquipment:Electricity",
+                "reporting_frequency" : "timestep"
+            }
+        },
+
+        // Output variable to CSV
+        {
+            "measure_dir_name" : "ExportVariabletoCSV",
+            "arguments": {
+                "variable_name": "Zone People Occupant Count",
+                "reporting_frequency": "Zone Timestep"
+
+            }
+        },
+        {
+            "measure_dir_name" : "ExportVariabletoCSV",
+            "arguments": {
+                "variable_name": "Zone Mean Air Temperature",
+                "reporting_frequency": "Zone Timestep"
+
+            }
+        },
+
+        // Output meters to CSV
+        {
+            "measure_dir_name": "ExportMetertoCSV",
+            "arguments": {
+                "meter_name": "Electricity:Facility",
+                "reporting_frequency" : "Zone Timestep"
+            }
+        },
+        {
+            "measure_dir_name": "ExportMetertoCSV",
+            "arguments": {
+                "meter_name": "InteriorLights:Electricity",
+                "reporting_frequency" : "Zone Timestep"
+            }
+        },
+        {
+            "measure_dir_name": "ExportMetertoCSV",
+            "arguments": {
+                "meter_name": "InteriorEquipment:Electricity",
+                "reporting_frequency" : "Zone Timestep"
+            }
+        }
+    ]
+}
+
