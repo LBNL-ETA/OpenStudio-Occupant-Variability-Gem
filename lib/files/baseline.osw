@@ -1,12 +1,15 @@
 {
-    "weather_file": "in.epw",
-    "seed_file": "in.osm",
+	"seed_file": null,
+	"weather_file": null,
+	"measure_paths": [],
+	"file_paths": [],
+	"run_directory": null,
     "steps": [
         // Apply occupant related measures
-        // {
-        //     "measure_dir_name": "Occupancy_Simulator",
-        //     "arguments": {}
-        // },
+        {
+            "measure_dir_name": "Occupancy_Simulator",
+            "arguments": {}
+        },
         // {
         //     "measure_dir_name": "create_lighting_schedule",
         //     "arguments": {}

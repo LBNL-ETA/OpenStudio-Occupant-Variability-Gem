@@ -6,7 +6,7 @@ module OpenStudio
       @@instance_lock = Mutex.new
       @@osw = nil
 
-      def initialize(baseline_osw_dir)
+      def initialize(baseline_osw_dir, files_dir)
         # do initialization of class variables in thread safe way
         @@instance_lock.synchronize do
           if @@osw.nil?
@@ -18,7 +18,7 @@ module OpenStudio
             end
 
             # add any paths local to the project
-            @@osw[:file_paths] << File.join(File.dirname(__FILE__), '../weather/')
+            @@osw[:file_paths] << File.join(files_dir)
 
             # configures OSW with extension gem paths for measures and files, all extension gems must be
             # required before this
@@ -27,20 +27,11 @@ module OpenStudio
         end
       end
 
-      def create_osw(userLib_csv_dir)
-
+      def create_osw()
         osw = Marshal.load(Marshal.dump(@@osw))
 
         puts 'Here we are.'
-
-        # puts OpenStudio
-        puts OpenStudio::Extension.methods
-
-        # OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
-        # OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', '__SKIP__', false)
-
-
-        puts osw
+        OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
 
         return osw
       end
