@@ -31,9 +31,10 @@ module OpenStudio
         # TODO:Add LOD options later
         puts '~~~ Applying occupant variability measures to the OSW...'
         osw = Marshal.load(Marshal.dump(@@osw))
-        OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
-        osw[:seed_file=] = seed_file_dir
-        osw[:weather_file=] = weather_file_dir
+        # OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
+        OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator')
+        osw[:seed_file] = seed_file_dir
+        osw[:weather_file] = weather_file_dir
         osw[:name] = 'Occupancy Simulator'
         osw[:description] = 'Occupancy Simulator'
         return osw
