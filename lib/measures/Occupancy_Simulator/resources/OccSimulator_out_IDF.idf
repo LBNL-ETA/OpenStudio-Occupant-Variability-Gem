@@ -16,11 +16,11 @@ ScheduleTypeLimits,
 obFMU Any Number;        !- Name
 
 Zone,
-S1_ConfRoom_Basement_ZN;                   !- Name
+S1_ConfRoom_2;                   !- Name
 People,
-S1_ConfRoom_Basement_ZN People,            !- Name
-S1_ConfRoom_Basement_ZN,                   !- Zone or ZoneList Name
-S1_ConfRoom_Basement_ZN People Schedule,   !- Number of People Schedule Name
+S1_ConfRoom_2 People,            !- Name
+S1_ConfRoom_2,                   !- Zone or ZoneList Name
+S1_ConfRoom_2 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
 8,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
@@ -30,22 +30,22 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S1_ConfRoom_Basement_ZN People Schedule,   !- Name
+S1_ConfRoom_2 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 4,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S2_ConfRoom_Bot_ZN_2;                   !- Name
+S2_ConfRoom_1;                   !- Name
 People,
-S2_ConfRoom_Bot_ZN_2 People,            !- Name
-S2_ConfRoom_Bot_ZN_2,                   !- Zone or ZoneList Name
-S2_ConfRoom_Bot_ZN_2 People Schedule,   !- Number of People Schedule Name
+S2_ConfRoom_1 People,            !- Name
+S2_ConfRoom_1,                   !- Zone or ZoneList Name
+S2_ConfRoom_1 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
 8,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
@@ -55,24 +55,24 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S2_ConfRoom_Bot_ZN_2 People Schedule,   !- Name
+S2_ConfRoom_1 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 5,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S3_ConfRoom_Bot_ZN_1;                   !- Name
+S3_OpenOffice;                   !- Name
 People,
-S3_ConfRoom_Bot_ZN_1 People,            !- Name
-S3_ConfRoom_Bot_ZN_1,                   !- Zone or ZoneList Name
-S3_ConfRoom_Bot_ZN_1 People Schedule,   !- Number of People Schedule Name
+S3_OpenOffice People,            !- Name
+S3_OpenOffice,                   !- Zone or ZoneList Name
+S3_OpenOffice People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
-8,                       !- Number of People
+9,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
 ,                        !- Zone Floor Area per Person {m2/person}
 0.3,                     !- Fraction Radiant
@@ -80,24 +80,24 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S3_ConfRoom_Bot_ZN_1 People Schedule,   !- Name
+S3_OpenOffice People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 6,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S4_ConfRoom_Mid_ZN_1;                   !- Name
+S4_EnclosedOffice_4;                   !- Name
 People,
-S4_ConfRoom_Mid_ZN_1 People,            !- Name
-S4_ConfRoom_Mid_ZN_1,                   !- Zone or ZoneList Name
-S4_ConfRoom_Mid_ZN_1 People Schedule,   !- Number of People Schedule Name
+S4_EnclosedOffice_4 People,            !- Name
+S4_EnclosedOffice_4,                   !- Zone or ZoneList Name
+S4_EnclosedOffice_4 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
-8,                       !- Number of People
+7,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
 ,                        !- Zone Floor Area per Person {m2/person}
 0.3,                     !- Fraction Radiant
@@ -105,24 +105,24 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S4_ConfRoom_Mid_ZN_1 People Schedule,   !- Name
+S4_EnclosedOffice_4 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 7,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S5_ConfRoom_Mid_ZN_2;                   !- Name
+S5_EnclosedOffice_1;                   !- Name
 People,
-S5_ConfRoom_Mid_ZN_2 People,            !- Name
-S5_ConfRoom_Mid_ZN_2,                   !- Zone or ZoneList Name
-S5_ConfRoom_Mid_ZN_2 People Schedule,   !- Number of People Schedule Name
+S5_EnclosedOffice_1 People,            !- Name
+S5_EnclosedOffice_1,                   !- Zone or ZoneList Name
+S5_EnclosedOffice_1 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
-8,                       !- Number of People
+5,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
 ,                        !- Zone Floor Area per Person {m2/person}
 0.3,                     !- Fraction Radiant
@@ -130,24 +130,24 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S5_ConfRoom_Mid_ZN_2 People Schedule,   !- Name
+S5_EnclosedOffice_1 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 8,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S6_ConfRoom_Top_ZN_2;                   !- Name
+S6_EnclosedOffice_2;                   !- Name
 People,
-S6_ConfRoom_Top_ZN_2 People,            !- Name
-S6_ConfRoom_Top_ZN_2,                   !- Zone or ZoneList Name
-S6_ConfRoom_Top_ZN_2 People Schedule,   !- Number of People Schedule Name
+S6_EnclosedOffice_2 People,            !- Name
+S6_EnclosedOffice_2,                   !- Zone or ZoneList Name
+S6_EnclosedOffice_2 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
-8,                       !- Number of People
+5,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
 ,                        !- Zone Floor Area per Person {m2/person}
 0.3,                     !- Fraction Radiant
@@ -155,24 +155,24 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S6_ConfRoom_Top_ZN_2 People Schedule,   !- Name
+S6_EnclosedOffice_2 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 9,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S7_ConfRoom_Top_ZN_1;                   !- Name
+S7_EnclosedOffice_3;                   !- Name
 People,
-S7_ConfRoom_Top_ZN_1 People,            !- Name
-S7_ConfRoom_Top_ZN_1,                   !- Zone or ZoneList Name
-S7_ConfRoom_Top_ZN_1 People Schedule,   !- Number of People Schedule Name
+S7_EnclosedOffice_3 People,            !- Name
+S7_EnclosedOffice_3,                   !- Zone or ZoneList Name
+S7_EnclosedOffice_3 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
-8,                       !- Number of People
+6,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
 ,                        !- Zone Floor Area per Person {m2/person}
 0.3,                     !- Fraction Radiant
@@ -180,24 +180,24 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S7_ConfRoom_Top_ZN_1 People Schedule,   !- Name
+S7_EnclosedOffice_3 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 10,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S8_Classroom_Basement_ZN;                   !- Name
+S8_EnclosedOffice_5;                   !- Name
 People,
-S8_Classroom_Basement_ZN People,            !- Name
-S8_Classroom_Basement_ZN,                   !- Zone or ZoneList Name
-S8_Classroom_Basement_ZN People Schedule,   !- Number of People Schedule Name
+S8_EnclosedOffice_5 People,            !- Name
+S8_EnclosedOffice_5,                   !- Zone or ZoneList Name
+S8_EnclosedOffice_5 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
-8,                       !- Number of People
+5,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
 ,                        !- Zone Floor Area per Person {m2/person}
 0.3,                     !- Fraction Radiant
@@ -205,24 +205,24 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S8_Classroom_Basement_ZN People Schedule,   !- Name
+S8_EnclosedOffice_5 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 11,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
 Zone,
-S9_Classroom_Bot_ZN;                   !- Name
+S9_EnclosedOffice_6;                   !- Name
 People,
-S9_Classroom_Bot_ZN People,            !- Name
-S9_Classroom_Bot_ZN,                   !- Zone or ZoneList Name
-S9_Classroom_Bot_ZN People Schedule,   !- Number of People Schedule Name
+S9_EnclosedOffice_6 People,            !- Name
+S9_EnclosedOffice_6,                   !- Zone or ZoneList Name
+S9_EnclosedOffice_6 People Schedule,   !- Number of People Schedule Name
 People,                  !- Number of People Calculation Method
-8,                       !- Number of People
+5,                       !- Number of People
 ,                        !- People per Zone Floor Area {person/m2}
 ,                        !- Zone Floor Area per Person {m2/person}
 0.3,                     !- Fraction Radiant
@@ -230,1013 +230,13 @@ AUTOCALCULATE,           !- Sensible Heat Fraction
 obFMU Activity Schedule; !- Activity Level Schedule Name
 
 Schedule:File,
-S9_Classroom_Bot_ZN People Schedule,   !- Name
+S9_EnclosedOffice_6 People Schedule,   !- Name
 obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
+E:/Users/Han/Documents/GitHub/OpenStudio_related/openstudio-occupant-variability-gem/lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
 12,                       !- Column Number
 7,                       !- Rows to Skip at Top
 8760,                     !- Number of Hours of Data
 Comma,                   !- Column Separator
 No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S10_Classroom_Mid_ZN;                   !- Name
-People,
-S10_Classroom_Mid_ZN People,            !- Name
-S10_Classroom_Mid_ZN,                   !- Zone or ZoneList Name
-S10_Classroom_Mid_ZN People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-8,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S10_Classroom_Mid_ZN People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-13,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S11_Classroom_Top_ZN;                   !- Name
-People,
-S11_Classroom_Top_ZN People,            !- Name
-S11_Classroom_Top_ZN,                   !- Zone or ZoneList Name
-S11_Classroom_Top_ZN People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-8,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S11_Classroom_Top_ZN People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-14,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S12_OpenOffice_Basement_ZN_1;                   !- Name
-People,
-S12_OpenOffice_Basement_ZN_1 People,            !- Name
-S12_OpenOffice_Basement_ZN_1,                   !- Zone or ZoneList Name
-S12_OpenOffice_Basement_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-37,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S12_OpenOffice_Basement_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-15,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S13_OpenOffice_Bot_ZN_3;                   !- Name
-People,
-S13_OpenOffice_Bot_ZN_3 People,            !- Name
-S13_OpenOffice_Bot_ZN_3,                   !- Zone or ZoneList Name
-S13_OpenOffice_Bot_ZN_3 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-49,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S13_OpenOffice_Bot_ZN_3 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-16,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S14_OpenOffice_Basement_ZN_2;                   !- Name
-People,
-S14_OpenOffice_Basement_ZN_2 People,            !- Name
-S14_OpenOffice_Basement_ZN_2,                   !- Zone or ZoneList Name
-S14_OpenOffice_Basement_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-58,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S14_OpenOffice_Basement_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-17,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S15_OpenOffice_Bot_ZN_2;                   !- Name
-People,
-S15_OpenOffice_Bot_ZN_2 People,            !- Name
-S15_OpenOffice_Bot_ZN_2,                   !- Zone or ZoneList Name
-S15_OpenOffice_Bot_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-51,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S15_OpenOffice_Bot_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-18,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S16_OpenOffice_Bot_ZN_1;                   !- Name
-People,
-S16_OpenOffice_Bot_ZN_1 People,            !- Name
-S16_OpenOffice_Bot_ZN_1,                   !- Zone or ZoneList Name
-S16_OpenOffice_Bot_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-47,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S16_OpenOffice_Bot_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-19,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S17_OpenOffice_Mid_ZN_1;                   !- Name
-People,
-S17_OpenOffice_Mid_ZN_1 People,            !- Name
-S17_OpenOffice_Mid_ZN_1,                   !- Zone or ZoneList Name
-S17_OpenOffice_Mid_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-52,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S17_OpenOffice_Mid_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-20,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S18_OpenOffice_Mid_ZN_2;                   !- Name
-People,
-S18_OpenOffice_Mid_ZN_2 People,            !- Name
-S18_OpenOffice_Mid_ZN_2,                   !- Zone or ZoneList Name
-S18_OpenOffice_Mid_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-44,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S18_OpenOffice_Mid_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-21,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S19_OpenOffice_Mid_ZN_3;                   !- Name
-People,
-S19_OpenOffice_Mid_ZN_3 People,            !- Name
-S19_OpenOffice_Mid_ZN_3,                   !- Zone or ZoneList Name
-S19_OpenOffice_Mid_ZN_3 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-53,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S19_OpenOffice_Mid_ZN_3 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-22,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S20_OpenOffice_Mid_ZN_4;                   !- Name
-People,
-S20_OpenOffice_Mid_ZN_4 People,            !- Name
-S20_OpenOffice_Mid_ZN_4,                   !- Zone or ZoneList Name
-S20_OpenOffice_Mid_ZN_4 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-41,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S20_OpenOffice_Mid_ZN_4 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-23,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S21_OpenOffice_Top_ZN_2;                   !- Name
-People,
-S21_OpenOffice_Top_ZN_2 People,            !- Name
-S21_OpenOffice_Top_ZN_2,                   !- Zone or ZoneList Name
-S21_OpenOffice_Top_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-43,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S21_OpenOffice_Top_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-24,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S22_OpenOffice_Top_ZN_3;                   !- Name
-People,
-S22_OpenOffice_Top_ZN_3 People,            !- Name
-S22_OpenOffice_Top_ZN_3,                   !- Zone or ZoneList Name
-S22_OpenOffice_Top_ZN_3 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-49,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S22_OpenOffice_Top_ZN_3 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-25,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S23_OpenOffice_Top_ZN_4;                   !- Name
-People,
-S23_OpenOffice_Top_ZN_4 People,            !- Name
-S23_OpenOffice_Top_ZN_4,                   !- Zone or ZoneList Name
-S23_OpenOffice_Top_ZN_4 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-41,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S23_OpenOffice_Top_ZN_4 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-26,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S24_OpenOffice_Top_ZN_1;                   !- Name
-People,
-S24_OpenOffice_Top_ZN_1 People,            !- Name
-S24_OpenOffice_Top_ZN_1,                   !- Zone or ZoneList Name
-S24_OpenOffice_Top_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-51,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S24_OpenOffice_Top_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-27,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S25_EnclosedOffice_Mid_ZN_7;                   !- Name
-People,
-S25_EnclosedOffice_Mid_ZN_7 People,            !- Name
-S25_EnclosedOffice_Mid_ZN_7,                   !- Zone or ZoneList Name
-S25_EnclosedOffice_Mid_ZN_7 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-21,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S25_EnclosedOffice_Mid_ZN_7 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-28,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S26_EnclosedOffice_Basement_ZN_1;                   !- Name
-People,
-S26_EnclosedOffice_Basement_ZN_1 People,            !- Name
-S26_EnclosedOffice_Basement_ZN_1,                   !- Zone or ZoneList Name
-S26_EnclosedOffice_Basement_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-20,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S26_EnclosedOffice_Basement_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-29,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S27_EnclosedOffice_Bot_ZN_1;                   !- Name
-People,
-S27_EnclosedOffice_Bot_ZN_1 People,            !- Name
-S27_EnclosedOffice_Bot_ZN_1,                   !- Zone or ZoneList Name
-S27_EnclosedOffice_Bot_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-18,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S27_EnclosedOffice_Bot_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-30,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S28_EnclosedOffice_Basement_ZN_2;                   !- Name
-People,
-S28_EnclosedOffice_Basement_ZN_2 People,            !- Name
-S28_EnclosedOffice_Basement_ZN_2,                   !- Zone or ZoneList Name
-S28_EnclosedOffice_Basement_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-21,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S28_EnclosedOffice_Basement_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-31,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S29_EnclosedOffice_Basement_ZN_3;                   !- Name
-People,
-S29_EnclosedOffice_Basement_ZN_3 People,            !- Name
-S29_EnclosedOffice_Basement_ZN_3,                   !- Zone or ZoneList Name
-S29_EnclosedOffice_Basement_ZN_3 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-22,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S29_EnclosedOffice_Basement_ZN_3 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-32,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S30_EnclosedOffice_Mid_ZN_4;                   !- Name
-People,
-S30_EnclosedOffice_Mid_ZN_4 People,            !- Name
-S30_EnclosedOffice_Mid_ZN_4,                   !- Zone or ZoneList Name
-S30_EnclosedOffice_Mid_ZN_4 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-17,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S30_EnclosedOffice_Mid_ZN_4 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-33,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S31_EnclosedOffice_Bot_ZN_3;                   !- Name
-People,
-S31_EnclosedOffice_Bot_ZN_3 People,            !- Name
-S31_EnclosedOffice_Bot_ZN_3,                   !- Zone or ZoneList Name
-S31_EnclosedOffice_Bot_ZN_3 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-19,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S31_EnclosedOffice_Bot_ZN_3 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-34,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S32_EnclosedOffice_Mid_ZN_1;                   !- Name
-People,
-S32_EnclosedOffice_Mid_ZN_1 People,            !- Name
-S32_EnclosedOffice_Mid_ZN_1,                   !- Zone or ZoneList Name
-S32_EnclosedOffice_Mid_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-18,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S32_EnclosedOffice_Mid_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-35,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S33_EnclosedOffice_Bot_ZN_2;                   !- Name
-People,
-S33_EnclosedOffice_Bot_ZN_2 People,            !- Name
-S33_EnclosedOffice_Bot_ZN_2,                   !- Zone or ZoneList Name
-S33_EnclosedOffice_Bot_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-21,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S33_EnclosedOffice_Bot_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-36,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S34_EnclosedOffice_Mid_ZN_2;                   !- Name
-People,
-S34_EnclosedOffice_Mid_ZN_2 People,            !- Name
-S34_EnclosedOffice_Mid_ZN_2,                   !- Zone or ZoneList Name
-S34_EnclosedOffice_Mid_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-19,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S34_EnclosedOffice_Mid_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-37,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S35_EnclosedOffice_Bot_ZN_4;                   !- Name
-People,
-S35_EnclosedOffice_Bot_ZN_4 People,            !- Name
-S35_EnclosedOffice_Bot_ZN_4,                   !- Zone or ZoneList Name
-S35_EnclosedOffice_Bot_ZN_4 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-18,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S35_EnclosedOffice_Bot_ZN_4 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-38,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S36_EnclosedOffice_Bot_ZN_6;                   !- Name
-People,
-S36_EnclosedOffice_Bot_ZN_6 People,            !- Name
-S36_EnclosedOffice_Bot_ZN_6,                   !- Zone or ZoneList Name
-S36_EnclosedOffice_Bot_ZN_6 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-21,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S36_EnclosedOffice_Bot_ZN_6 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-39,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S37_EnclosedOffice_Bot_ZN_5;                   !- Name
-People,
-S37_EnclosedOffice_Bot_ZN_5 People,            !- Name
-S37_EnclosedOffice_Bot_ZN_5,                   !- Zone or ZoneList Name
-S37_EnclosedOffice_Bot_ZN_5 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-18,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S37_EnclosedOffice_Bot_ZN_5 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-40,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S38_EnclosedOffice_Mid_ZN_3;                   !- Name
-People,
-S38_EnclosedOffice_Mid_ZN_3 People,            !- Name
-S38_EnclosedOffice_Mid_ZN_3,                   !- Zone or ZoneList Name
-S38_EnclosedOffice_Mid_ZN_3 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-18,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S38_EnclosedOffice_Mid_ZN_3 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-41,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S39_EnclosedOffice_Mid_ZN_5;                   !- Name
-People,
-S39_EnclosedOffice_Mid_ZN_5 People,            !- Name
-S39_EnclosedOffice_Mid_ZN_5,                   !- Zone or ZoneList Name
-S39_EnclosedOffice_Mid_ZN_5 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-21,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S39_EnclosedOffice_Mid_ZN_5 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-42,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S40_EnclosedOffice_Mid_ZN_6;                   !- Name
-People,
-S40_EnclosedOffice_Mid_ZN_6 People,            !- Name
-S40_EnclosedOffice_Mid_ZN_6,                   !- Zone or ZoneList Name
-S40_EnclosedOffice_Mid_ZN_6 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-20,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S40_EnclosedOffice_Mid_ZN_6 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-43,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S41_EnclosedOffice_Mid_ZN_8;                   !- Name
-People,
-S41_EnclosedOffice_Mid_ZN_8 People,            !- Name
-S41_EnclosedOffice_Mid_ZN_8,                   !- Zone or ZoneList Name
-S41_EnclosedOffice_Mid_ZN_8 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-19,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S41_EnclosedOffice_Mid_ZN_8 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-44,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S42_EnclosedOffice_Top_ZN_3;                   !- Name
-People,
-S42_EnclosedOffice_Top_ZN_3 People,            !- Name
-S42_EnclosedOffice_Top_ZN_3,                   !- Zone or ZoneList Name
-S42_EnclosedOffice_Top_ZN_3 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-20,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S42_EnclosedOffice_Top_ZN_3 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-45,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S43_EnclosedOffice_Top_ZN_8;                   !- Name
-People,
-S43_EnclosedOffice_Top_ZN_8 People,            !- Name
-S43_EnclosedOffice_Top_ZN_8,                   !- Zone or ZoneList Name
-S43_EnclosedOffice_Top_ZN_8 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-20,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S43_EnclosedOffice_Top_ZN_8 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-46,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S44_EnclosedOffice_Top_ZN_4;                   !- Name
-People,
-S44_EnclosedOffice_Top_ZN_4 People,            !- Name
-S44_EnclosedOffice_Top_ZN_4,                   !- Zone or ZoneList Name
-S44_EnclosedOffice_Top_ZN_4 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-17,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S44_EnclosedOffice_Top_ZN_4 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-47,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S45_EnclosedOffice_Top_ZN_2;                   !- Name
-People,
-S45_EnclosedOffice_Top_ZN_2 People,            !- Name
-S45_EnclosedOffice_Top_ZN_2,                   !- Zone or ZoneList Name
-S45_EnclosedOffice_Top_ZN_2 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-20,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S45_EnclosedOffice_Top_ZN_2 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-48,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S46_EnclosedOffice_Top_ZN_7;                   !- Name
-People,
-S46_EnclosedOffice_Top_ZN_7 People,            !- Name
-S46_EnclosedOffice_Top_ZN_7,                   !- Zone or ZoneList Name
-S46_EnclosedOffice_Top_ZN_7 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-20,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S46_EnclosedOffice_Top_ZN_7 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-49,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S47_EnclosedOffice_Top_ZN_5;                   !- Name
-People,
-S47_EnclosedOffice_Top_ZN_5 People,            !- Name
-S47_EnclosedOffice_Top_ZN_5,                   !- Zone or ZoneList Name
-S47_EnclosedOffice_Top_ZN_5 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-19,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S47_EnclosedOffice_Top_ZN_5 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-50,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S48_EnclosedOffice_Top_ZN_6;                   !- Name
-People,
-S48_EnclosedOffice_Top_ZN_6 People,            !- Name
-S48_EnclosedOffice_Top_ZN_6,                   !- Zone or ZoneList Name
-S48_EnclosedOffice_Top_ZN_6 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-19,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S48_EnclosedOffice_Top_ZN_6 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-51,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
-
-Zone,
-S49_EnclosedOffice_Top_ZN_1;                   !- Name
-People,
-S49_EnclosedOffice_Top_ZN_1 People,            !- Name
-S49_EnclosedOffice_Top_ZN_1,                   !- Zone or ZoneList Name
-S49_EnclosedOffice_Top_ZN_1 People Schedule,   !- Number of People Schedule Name
-People,                  !- Number of People Calculation Method
-19,                       !- Number of People
-,                        !- People per Zone Floor Area {person/m2}
-,                        !- Zone Floor Area per Person {m2/person}
-0.3,                     !- Fraction Radiant
-AUTOCALCULATE,           !- Sensible Heat Fraction
-obFMU Activity Schedule; !- Activity Level Schedule Name
-
-Schedule:File,
-S49_EnclosedOffice_Top_ZN_1 People Schedule,   !- Name
-obFMU Fraction,          !- Schedule Type Limits Name
-E:/Users/Han/Documents/GitHub/DOE-Loadshape/measure_development/my_measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.csv,    !- File Name
-52,                       !- Column Number
-7,                       !- Rows to Skip at Top
-8760,                     !- Number of Hours of Data
-Comma,                   !- Column Separator
-No,                      !- Interpolate to Timestep
-15;                      !- Minutes per Item
+10;                      !- Minutes per Item
 
