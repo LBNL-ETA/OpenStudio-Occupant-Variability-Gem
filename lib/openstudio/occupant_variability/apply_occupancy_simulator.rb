@@ -27,17 +27,29 @@ module OpenStudio
         end
       end
 
-      def create_osw_lod1(seed_file_dir, weather_file_dir)
-        # TODO:Add LOD options later
+
+      def create_osw(seed_file_dir, weather_file_dir, lod = 1)
+        # TODO:Add generate DOE prototype model later
         puts '~~~ Applying occupant variability measures to the OSW...'
         osw = Marshal.load(Marshal.dump(@@osw))
         osw[:seed_file] = seed_file_dir
         osw[:weather_file] = weather_file_dir
-        osw[:name] = 'Occupancy Simulator'
-        osw[:description] = 'Occupancy Simulator'
+        osw[:name] = 'Occupancy Variability LOD2'
+        osw[:description] = 'Occupancy variability at level of detail ' + lod.to_s
 
-        OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
-        
+        if lod == 1
+
+        elsif lod == 2
+          OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
+          OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule', '__SKIP__', false)
+          OpenStudio::Extension.set_measure_argument(osw, 'create_mels_schedule_from_occupant_count', '__SKIP__', false)
+        elsif lod == 3
+          OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
+          OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule', '__SKIP__', false)
+          OpenStudio::Extension.set_measure_argument(osw, 'create_mels_schedule_from_occupant_count', '__SKIP__', false)
+          OpenStudio::Extension.set_measure_argument(osw, 'add_demand_controlled_ventilation', '__SKIP__', false)
+          OpenStudio::Extension.set_measure_argument(osw, 'update_hvac_setpoint_schedule', '__SKIP__', false)
+        end
 
         return osw
       end
