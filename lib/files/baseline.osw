@@ -7,7 +7,7 @@
         {
             "measure_dir_name": "Occupancy_Simulator",
             "arguments": {}
-        }
+        },
         {
             "measure_dir_name": "create_lighting_schedule",
             "arguments": {}
@@ -19,7 +19,7 @@
         {
             "measure_dir_name": "update_hvac_setpoint_schedule",
             "arguments": {}
-        },
+        }
 
         // Add output variables
         // {

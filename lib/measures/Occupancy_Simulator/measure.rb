@@ -955,12 +955,11 @@ def obXML_builder(osModel, userLib, outPath, all_args)
 
 
   def get_os_schedule_from_csv(file_name, model, schedule_name, col, skip_row)
+    puts 'Try to create schedule:file object...'
     file_name = File.realpath(file_name)
     external_file = OpenStudio::Model::ExternalFile::getExternalFile(model, file_name)
     external_file = external_file.get
     schedule_file = OpenStudio::Model::ScheduleFile.new(external_file, col, skip_row)
-    # schedule_type_limit = OpenStudio::Model::ScheduleTypeLimits .new(model)
-    # schedule_file.setScheduleTypeLimits(schedule_type_limit)
     schedule_file.setName(schedule_name)
     return schedule_file
   end
@@ -1089,19 +1088,19 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     coSimXML_builder(model, xml_path)
 
     # Command to call obFMU.exe
+    # Remove old output file if it exists.
+    external_csv_path = output_file_name + '_IDF.csv'
+    puts '======================================================='
+    puts model_temp_run_path
+    puts external_csv_path
+
+    if File.exist?(external_csv_path)
+      File.delete(external_csv_path)
+      runner.registerInfo("Deleted old output occ sch file at '#{external_csv_path}'")
+    end
+    
     system(obFMU_path + 'obFMU.exe', xml_file_name, output_file_name, co_sim_file_name)
     runner.registerInfo("Occupancy schedule simulation successfully completed.")
-    # Move the file to the temp folder
-    external_csv_path = output_file_name + '_IDF.csv'
-
-
-    runner.registerInfo("The old output occ sch file is at '#{external_csv_path}'")
-
-    # Important, copy the output csv from the obFMU path
-    # FileUtils.cp(output_file_name + '_IDF.csv', model_temp_resources_path) # No longer need this with OS V2.7.1 or later if the file is used in OpenStudio object
-    # FileUtils.cp(output_file_name + '.csv', model_temp_resources_path + '/files/')
-
-    runner.registerInfo("Occupancy schedule files copied to the temporary folder: #{model_temp_run_path}.")
 
     # Read schedule file from csv
     # Update: Han Li 2018/9/14

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>occupancy_simulator</name>
   <uid>dff4c6be-e84f-4340-b948-ea389d5cd8f2</uid>
-  <version_id>0881bb01-0cb5-49c7-915e-42685b06304a</version_id>
-  <version_modified>20190604T231553Z</version_modified>
+  <version_id>480897d0-43b9-4ed8-8521-02f8d299db3f</version_id>
+  <version_modified>20190705T161432Z</version_modified>
   <xml_checksum>890F5164</xml_checksum>
   <class_name>OccupancySimulator</class_name>
   <display_name>Occupancy Simulator</display_name>
@@ -69,6 +69,12 @@
       <checksum>6C1FB102</checksum>
     </file>
     <file>
+      <filename>obCoSim.xml</filename>
+      <filetype>xml</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>EBD3EA1F</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.4.0</identifier>
@@ -77,43 +83,37 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B4E7E4BE</checksum>
-    </file>
-    <file>
-      <filename>obCoSim.xml</filename>
-      <filetype>xml</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>EBD3EA1F</checksum>
+      <checksum>C94153DB</checksum>
     </file>
     <file>
       <filename>obXML.xml</filename>
       <filetype>xml</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9B163488</checksum>
+      <checksum>8889E05B</checksum>
     </file>
     <file>
       <filename>OccSimulator_out.csv</filename>
       <filetype>csv</filetype>
       <usage_type>resource</usage_type>
-      <checksum>C4A627D3</checksum>
+      <checksum>9C0DE44C</checksum>
     </file>
     <file>
       <filename>OccSimulator_out_by_Occupant.csv</filename>
       <filetype>csv</filetype>
       <usage_type>resource</usage_type>
-      <checksum>2DE7F8A4</checksum>
+      <checksum>BF0454C3</checksum>
     </file>
     <file>
       <filename>OccSimulator_out_IDF.csv</filename>
       <filetype>csv</filetype>
       <usage_type>resource</usage_type>
-      <checksum>7B5BCDF5</checksum>
+      <checksum>EC214418</checksum>
     </file>
     <file>
       <filename>OccSimulator_out_IDF.idf</filename>
       <filetype>idf</filetype>
       <usage_type>resource</usage_type>
-      <checksum>B661FF1F</checksum>
+      <checksum>09D38BD6</checksum>
     </file>
   </files>
 </measure>

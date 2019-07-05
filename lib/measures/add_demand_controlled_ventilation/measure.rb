@@ -70,12 +70,12 @@ class AddDemandControlledVentilation < OpenStudio::Measure::ModelMeasure
         oa_per_person_office = OpenStudio::Measure::OSArgument.makeDoubleArgument('oa_per_person_office', true)
         oa_per_person_office.setDisplayName('Office outdoor air flow rate per person [m3/(s*person)]')
         oa_per_person_office.setDescription('This value will be used in the mechanical ventilation calculation with DCV.')
-        oa_per_person_office.setDefaultValue(0.0025)
+        oa_per_person_office.setDefaultValue(@@oa_per_person_office_default)
 
         oa_per_area_office = OpenStudio::Measure::OSArgument.makeDoubleArgument('oa_per_area_office', true)
         oa_per_area_office.setDisplayName('Office outdoor air flow rate per floor area [m3/(s*m2)]')
         oa_per_area_office.setDescription('This value will be used in the mechanical ventilation calculation with DCV.')
-        oa_per_area_office.setDefaultValue(0.0003)
+        oa_per_area_office.setDefaultValue(@@oa_per_area_office_default)
 
         args << oa_per_person_office
         args << oa_per_area_office
@@ -84,12 +84,12 @@ class AddDemandControlledVentilation < OpenStudio::Measure::ModelMeasure
         oa_per_person_conference = OpenStudio::Measure::OSArgument.makeDoubleArgument('oa_per_person_conference', true)
         oa_per_person_conference.setDisplayName('Conference outdoor air flow rate per person [m3/(s*person)]')
         oa_per_person_conference.setDescription('This value will be used in the mechanical ventilation calculation with DCV.')
-        oa_per_person_conference.setDefaultValue(0.0025)
+        oa_per_person_conference.setDefaultValue(@@oa_per_person_conference_default)
 
         oa_per_area_conference = OpenStudio::Measure::OSArgument.makeDoubleArgument('oa_per_area_conference', true)
         oa_per_area_conference.setDisplayName('Conference outdoor air flow rate per floor area [m3/(s*m2)]')
         oa_per_area_conference.setDescription('This value will be used in the mechanical ventilation calculation with DCV.')
-        oa_per_area_conference.setDefaultValue(0.0003)
+        oa_per_area_conference.setDefaultValue(@@oa_per_area_conference_default)
 
         args << oa_per_person_conference
         args << oa_per_area_conference
