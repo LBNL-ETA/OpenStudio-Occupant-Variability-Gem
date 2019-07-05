@@ -10,7 +10,7 @@ module OpenStudio
       # @param [String] vintage
       # @param [String] climate_zone
       def initialize(name, model_type, vintage, climate_zone, model_dir)
-        puts "---> Initializing a new ModelCretor instance"
+        puts "------> Initializing a new ModelCretor instance"
         @name = name.split(' ').collect(&:capitalize).join
         @model_type = model_type
         @model_dir = model_dir
@@ -20,7 +20,7 @@ module OpenStudio
 
       def generate_prototype_model()
         # Generate a model here
-        puts "---> Generate the model using OpenStudio-standards"
+        puts "------> Generate the model using OpenStudio-standards"
         model = OpenStudio::Model::Model.new
         @debug = false
         epw_file = 'Not Applicable'

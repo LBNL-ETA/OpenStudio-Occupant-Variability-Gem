@@ -1,6 +1,6 @@
 module OpenStudio
   module OccupantVariability
-    class OccupancySimulatorApplier
+    class OccupancyVariabilityApplier
 
       # class level variables
       @@instance_lock = Mutex.new
@@ -30,11 +30,11 @@ module OpenStudio
 
       def create_osw(seed_file_dir, weather_file_dir, lod = 1, lighting_arg_val = nil, mels_arg_val = nil)
         # TODO:Add generate DOE prototype model later
-        puts '~~~ Applying occupant variability measures to the OSW...'
+        puts '------> Applying occupant variability measures to the OSW...'
         osw = Marshal.load(Marshal.dump(@@osw))
         osw[:seed_file] = seed_file_dir
         osw[:weather_file] = weather_file_dir
-        osw[:name] = 'Occupancy Variability LOD2'
+        osw[:name] = "Occupancy Variability LOD#{lod.to_s}"
         osw[:description] = 'Occupancy variability at level of detail ' + lod.to_s
 
         if lod == 1

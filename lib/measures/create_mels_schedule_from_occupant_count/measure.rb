@@ -298,8 +298,14 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
       csv_file = occ_schedule_dir
       puts 'Use user provided occupancy schedule file at: ' + csv_file
     else
-      model_temp_resources_path = File.expand_path("../../..", model_temp_run_path) + '/resources/files/' # where the occupancy schedule will be saved
-      csv_file = model_temp_resources_path + 'OccSimulator_out_IDF.csv' # ! Need to update this CSV filename if it's changed in the occupancy simulator
+      # Check if schedule file at several places
+      csv_path_lookup_1 = File.expand_path("../..", model_temp_run_path) + '/files/OccSimulator_out_IDF.csv'                # Default path when run with OSW in CLI
+      csv_path_lookup_2 = File.expand_path("../../..", model_temp_run_path) + '/resources/files/OccSimulator_out_IDF.csv'   # Default path when run with OpenStudio GUI
+      if File.file?(csv_path_lookup_1)
+        csv_file = csv_path_lookup_1
+      elsif File.file?(csv_path_lookup_2)
+        csv_file = csv_path_lookup_2
+      end
       puts 'Use default occupancy schedule file at: ' + csv_file
     end
 
@@ -346,7 +352,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
     file_name_equip_sch = 'sch_MELs.csv'
     vcols_to_csv(v_cols)
     # Important: copy the output csv from the temp run path, so that the external file object can find the file during run
-    FileUtils.cp(model_temp_run_path + file_name_equip_sch, model_temp_resources_path)
+    # FileUtils.cp(model_temp_run_path + file_name_equip_sch, model_temp_resources_path)
 
     # Add new electrical equipment schedule from the CSV file created
     runner.registerInfo("Adding new OS:Schedule:File objects to the model....")

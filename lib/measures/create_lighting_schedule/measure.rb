@@ -304,16 +304,20 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     occ_schedule_dir = runner.getStringArgumentValue('occ_schedule_dir', user_arguments)
     model_temp_run_path = Dir.pwd + '/'
     if File.file?(occ_schedule_dir)
-      csv_file = occ_schedule_dir
-      puts 'Use user provided occupancy schedule file at: ' + csv_file
+      # Check if user provided a occupancy schedule CSV file
+      csv_file = occ_schedule_dirs
+      runner.registerInitialCondition('Use user provided occupancy schedule file at: ' + csv_file)
     else
-      model_temp_resources_path = File.expand_path("../../..", model_temp_run_path) + '/resources/files/' # where the occupancy schedule will be saved
-      csv_file = model_temp_resources_path + 'OccSimulator_out_IDF.csv' # ! Need to update this CSV filename if it's changed in the occupancy simulator
-      puts '============================================='
-      puts 'Temp run path: ' + model_temp_run_path
-      puts 'Use default occupancy schedule file at: ' + csv_file
+      # Check if schedule file at several places
+      csv_path_lookup_1 = File.expand_path("../..", model_temp_run_path) + '/files/OccSimulator_out_IDF.csv'                # Default path when run with OSW in CLI
+      csv_path_lookup_2 = File.expand_path("../../..", model_temp_run_path) + '/resources/files/OccSimulator_out_IDF.csv'   # Default path when run with OpenStudio GUI
+      if File.file?(csv_path_lookup_1)
+        csv_file = csv_path_lookup_1
+      elsif File.file?(csv_path_lookup_2)
+        csv_file = csv_path_lookup_2
+      end
+      runner.registerInitialCondition('Use default occupancy schedule file at: ' + csv_file)
     end
-
 
     # Get the spaces with occupancy count schedule available
     v_spaces_occ_sch = File.readlines(csv_file)[3].split(',') # Room ID is saved in 4th row of the occ_sch file
