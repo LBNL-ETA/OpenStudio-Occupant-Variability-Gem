@@ -174,13 +174,13 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
         arg_temp = OpenStudio::Measure::OSArgument::makeChoiceArgument(arg_name, space_type_chs, true)
         arg_temp.setDisplayName("Space #{i}: " + current_space.nameString)
         # Conditionally set the default choice for the space
-        if (@@v_office_space_types.include? space_type.standardsSpaceType.to_s)
+        if @@v_office_space_types.include? space_type.standardsSpaceType.to_s
           arg_temp.setDefaultValue("Open-plan office")
-        elsif (@@v_conference_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif @@v_conference_space_types.include? space_type.standardsSpaceType.to_s
           arg_temp.setDefaultValue("Conference room")
-        elsif (@@v_auxiliary_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif @@v_auxiliary_space_types.include? space_type.standardsSpaceType.to_s
           arg_temp.setDefaultValue('Auxiliary')
-        elsif (@@v_other_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif @@v_other_space_types.include? space_type.standardsSpaceType.to_s
           # If the space type is not in standard space types
           arg_temp.setDefaultValue('Other')
         end
@@ -212,7 +212,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     return model
   end
 
-  def create_lighting_sch_from_occupancy_count(space_name, v_timestamps, v_occ_n_count, delay = 15)
+  def create_lighting_sch_from_occupancy_count(space_name, v_timestamps, v_occ_n_count, delay = @@off_delay)
     # This function creates a lighitng schedule based on the occupant count schedule
     # Delay is in minutes
     # Note: Be careful of the timestep format when updating the function
@@ -221,12 +221,12 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     timestamp_leaving = nil
     v_occ_n_count.each_with_index do |value_timestamp, i|
       timestamp_current = DateTime.parse(v_timestamps[i])
-      v_temp[i] = 0
+      v_temp[i] = @@off_hour_lighting_fraction
       if v_occ_n_count[i].to_f > 0
         v_temp[i] = 1
       end
       # Find the timestamp where occupant count starts to be 0
-      if (v_occ_n_count[i].to_f == 0 && v_occ_n_count[i - 1].to_f > 0)
+      if v_occ_n_count[i].to_f == 0 && v_occ_n_count[i - 1].to_f > 0
         # puts 'start counting... index is: ' + i.to_s
         timestamp_leaving = DateTime.parse(v_timestamps[i])
         flag_check = true
@@ -317,6 +317,8 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
         csv_file = csv_path_lookup_1
       elsif File.file?(csv_path_lookup_2)
         csv_file = csv_path_lookup_2
+      else
+        csv_file = ''
       end
       runner.registerInitialCondition('Use default occupancy schedule file at: ' + csv_file)
     end
@@ -325,7 +327,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     v_spaces_occ_sch = File.readlines(csv_file)[3].split(',') # Room ID is saved in 4th row of the occ_sch file
     v_headers = Array.new
     v_spaces_occ_sch.each do |space_occ_sch|
-      if (!['Room ID', 'S0_Outdoor', 'Outside building'].include? space_occ_sch and !space_occ_sch.strip.empty?)
+      if !['Room ID', 'S0_Outdoor', 'Outside building'].include? space_occ_sch and !space_occ_sch.strip.empty?
         v_headers << space_occ_sch
       end
     end
@@ -409,10 +411,10 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
           col = i
           temp_file_path = model_temp_run_path + file_name_light_sch
           sch_file_name = space.name.to_s + ' lght sch'
-          scheduleFile = get_os_schedule_from_csv(model, temp_file_path, sch_file_name, col, skip_row = 1)
-          scheduleFile.setMinutesperItem(@@minute_per_item.to_s)
-          puts scheduleFile
-          model = add_light(model, space, scheduleFile)
+          schedule_file = get_os_schedule_from_csv(model, temp_file_path, sch_file_name, col, skip_row = 1)
+          schedule_file.setMinutesperItem(@@minute_per_item.to_s)
+          puts schedule_file
+          model = add_light(model, space, schedule_file)
         end
       end
     end
