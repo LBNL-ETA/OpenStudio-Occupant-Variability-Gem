@@ -6,6 +6,8 @@ module OpenStudio
 
       # Default file name set by occupancy simulator, change according in the future as needed.
       @@default_occupant_schedule_filename = 'OccSimulator_out_IDF.csv'
+      @@default_lighting_schedule_filename = 'sch_light.csv'
+      @@default_mels_schedule_filename = 'sch_MELs.csv'
 
       # Override parent class
       def initialize
@@ -35,8 +37,24 @@ module OpenStudio
         @@default_occupant_schedule_filename
       end
 
+      def get_lighting_schedule_file_name
+        @@default_lighting_schedule_filename
+      end
+
+      def get_mels_schedule_file_name
+        @@default_mels_schedule_filename
+      end
+
       def get_occupancy_schedule_file_dir
         self.files_dir + "/#{self.get_occupancy_schedule_file_name}"
+      end
+
+      def get_lighting_schedule_file_dir
+        self.files_dir + "/#{self.get_lighting_schedule_file_name}"
+      end
+
+      def get_mels_schedule_file_dir
+        self.files_dir + "/#{self.get_mels_schedule_file_name}"
       end
 
     end
