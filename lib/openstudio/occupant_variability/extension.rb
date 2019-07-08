@@ -3,6 +3,10 @@ require 'openstudio/extension'
 module OpenStudio
   module OccupantVariability
     class Extension < OpenStudio::Extension::Extension
+
+      # Default file name set by occupancy simulator, change according in the future as needed.
+      @@default_occupant_schedule_filename = 'OccSimulator_out_IDF.csv'
+
       # Override parent class
       def initialize
         super
@@ -25,6 +29,14 @@ module OpenStudio
       # Return the absolute path of the doc templates dir or nil if there is none
       def doc_templates_dir
         return File.absolute_path(File.join(@root_dir, 'doc_templates'))
+      end
+
+      def get_occupancy_schedule_file_name
+        @@default_occupant_schedule_filename
+      end
+
+      def get_occupancy_schedule_file_dir
+        self.files_dir + "/#{self.get_occupancy_schedule_file_name}"
       end
 
     end

@@ -9,91 +9,93 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
 
   # Class variables
   @@v_space_args = Hash.new
+  # Default file name set by occupancy simulator, change according in the future as needed.
+  @@default_occupant_schedule_filename = 'OccSimulator_out_IDF.csv'
 
-  @@LPD = 8.5     # Default lighting power density: 8.5 W/m2
-  @@F_rad = 0.7   # Default radiation fraction: 0.7
-  @@F_vis = 0.2   # Default visible fraction: 0.2
-  @@minute_per_item = 10    # 10 minutes per simulation step
-  @@off_delay = 15          # 15 minute delay to turn down the light when there is no one in the space
+  @@LPD = 8.5 # Default lighting power density: 8.5 W/m2
+  @@F_rad = 0.7 # Default radiation fraction: 0.7
+  @@F_vis = 0.2 # Default visible fraction: 0.2
+  @@minute_per_item = 10 # 10 minutes per simulation step
+  @@off_delay = 15 # 15 minute delay to turn down the light when there is no one in the space
 
   @@off_hour_lighting_fraction = 0.15 # Default lighting power fraction during off hours
 
   # Standard space types for office rooms
   @@v_office_space_types = [
-    'WholeBuilding - Sm Office',
-    'WholeBuilding - Md Office',
-    'WholeBuilding - Lg Office',
-    'Office',
-    'ClosedOffice',
-    'OpenOffice',
-    'SmallOffice - ClosedOffice',
-    'SmallOffice - OpenOffice',
-    'MediumOffice - ClosedOffice',
-    'MediumOffice - OpenOffice',
-    'LargeOffice - ClosedOffice',
-    'LargeOffice - OpenOffice'
+      'WholeBuilding - Sm Office',
+      'WholeBuilding - Md Office',
+      'WholeBuilding - Lg Office',
+      'Office',
+      'ClosedOffice',
+      'OpenOffice',
+      'SmallOffice - ClosedOffice',
+      'SmallOffice - OpenOffice',
+      'MediumOffice - ClosedOffice',
+      'MediumOffice - OpenOffice',
+      'LargeOffice - ClosedOffice',
+      'LargeOffice - OpenOffice'
   ]
   # Standard space types for meeting rooms
   @@v_conference_space_types = [
-    'Conference',
-    'Classroom',
-    'SmallOffice - Conference',
-    'MediumOffice - Conference',
-    'MediumOffice - Classroom',
-    'LargeOffice - Conference'
+      'Conference',
+      'Classroom',
+      'SmallOffice - Conference',
+      'MediumOffice - Conference',
+      'MediumOffice - Classroom',
+      'LargeOffice - Conference'
   ]
   # Standard space types for auxiliary rooms
   @@v_auxiliary_space_types = [
-    'OfficeLarge Data Center',
-    'OfficeLarge Main Data Center',
-    'SmallOffice - Elec/MechRoom',
-    'MediumOffice - Elec/MechRoom',
-    'LargeOffice - Elec/MechRoom'
+      'OfficeLarge Data Center',
+      'OfficeLarge Main Data Center',
+      'SmallOffice - Elec/MechRoom',
+      'MediumOffice - Elec/MechRoom',
+      'LargeOffice - Elec/MechRoom'
   ]
   @@v_other_space_types = [
-    'Office Attic',
-    'BreakRoom',
-    'Attic',
-    'Plenum',
-    'Corridor',
-    'Lobby',
-    'Elec/MechRoom',
-    'Stair',
-    'Restroom',
-    'Dining',
-    'Storage',
-    'Locker',
-    'Plenum Space Type',
-    'SmallOffice - Corridor',
-    'SmallOffice - Lobby',
-    'SmallOffice - Attic',
-    'SmallOffice - Restroom',
-    'SmallOffice - Stair',
-    'SmallOffice - Storage',
-    'MediumOffice - Corridor',
-    'MediumOffice - Dining',
-    'MediumOffice - Restroom',
-    'MediumOffice - Lobby',
-    'MediumOffice - Storage',
-    'MediumOffice - Stair',
-    'LargeOffice - Corridor',
-    'LargeOffice - Dining',
-    'LargeOffice - Restroom',
-    'LargeOffice - Lobby',
-    'LargeOffice - Storage',
-    'LargeOffice - Stair',
-    ''
+      'Office Attic',
+      'BreakRoom',
+      'Attic',
+      'Plenum',
+      'Corridor',
+      'Lobby',
+      'Elec/MechRoom',
+      'Stair',
+      'Restroom',
+      'Dining',
+      'Storage',
+      'Locker',
+      'Plenum Space Type',
+      'SmallOffice - Corridor',
+      'SmallOffice - Lobby',
+      'SmallOffice - Attic',
+      'SmallOffice - Restroom',
+      'SmallOffice - Stair',
+      'SmallOffice - Storage',
+      'MediumOffice - Corridor',
+      'MediumOffice - Dining',
+      'MediumOffice - Restroom',
+      'MediumOffice - Lobby',
+      'MediumOffice - Storage',
+      'MediumOffice - Stair',
+      'LargeOffice - Corridor',
+      'LargeOffice - Dining',
+      'LargeOffice - Restroom',
+      'LargeOffice - Lobby',
+      'LargeOffice - Storage',
+      'LargeOffice - Stair',
+      ''
   ]
 
   # Available office tpye options for users in GUI
-  @@office_type_names =[
-    'Open-plan office',
-    'Closed office'
+  @@office_type_names = [
+      'Open-plan office',
+      'Closed office'
   ]
 
   @@conference_room_type_names = [
-    'Conference room',
-    'Conference room example'
+      'Conference room',
+      'Conference room example'
   ]
 
   # human readable name
@@ -159,8 +161,8 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
         space_type_chs = meeting_space_type_chs
       elsif @@v_other_space_types.include? space_type.standardsSpaceType.to_s
         space_type_chs = other_space_type_chs
-      # else
-      #   space_type_chs = other_space_type_chs
+        # else
+        #   space_type_chs = other_space_type_chs
       end
 
       v_current_spaces = space_type.spaces
@@ -172,13 +174,13 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
         arg_temp = OpenStudio::Measure::OSArgument::makeChoiceArgument(arg_name, space_type_chs, true)
         arg_temp.setDisplayName("Space #{i}: " + current_space.nameString)
         # Conditionally set the default choice for the space
-        if(@@v_office_space_types.include? space_type.standardsSpaceType.to_s)
+        if (@@v_office_space_types.include? space_type.standardsSpaceType.to_s)
           arg_temp.setDefaultValue("Open-plan office")
-        elsif(@@v_conference_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif (@@v_conference_space_types.include? space_type.standardsSpaceType.to_s)
           arg_temp.setDefaultValue("Conference room")
-        elsif(@@v_auxiliary_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif (@@v_auxiliary_space_types.include? space_type.standardsSpaceType.to_s)
           arg_temp.setDefaultValue('Auxiliary')
-        elsif(@@v_other_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif (@@v_other_space_types.include? space_type.standardsSpaceType.to_s)
           # If the space type is not in standard space types
           arg_temp.setDefaultValue('Other')
         end
@@ -190,7 +192,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     return args
   end
 
-  def add_light(model, space, schedule, lpd=@@LPD, frac_rad=@@F_rad, frac_vis=@@F_vis)
+  def add_light(model, space, schedule, lpd = @@LPD, frac_rad = @@F_rad, frac_vis = @@F_vis)
     # This function creates and adds OS:Light and OS:Light:Definition objects to a space
     space_name = space.name.to_s
     # New light definition
@@ -210,7 +212,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     return model
   end
 
-  def create_lighting_sch_from_occupancy_count(space_name, v_timestamps, v_occ_n_count, delay=15)
+  def create_lighting_sch_from_occupancy_count(space_name, v_timestamps, v_occ_n_count, delay = 15)
     # This function creates a lighitng schedule based on the occupant count schedule
     # Delay is in minutes
     # Note: Be careful of the timestep format when updating the function
@@ -224,7 +226,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
         v_temp[i] = 1
       end
       # Find the timestamp where occupant count starts to be 0
-      if(v_occ_n_count[i].to_f == 0 && v_occ_n_count[i-1].to_f > 0)
+      if (v_occ_n_count[i].to_f == 0 && v_occ_n_count[i - 1].to_f > 0)
         # puts 'start counting... index is: ' + i.to_s
         timestamp_leaving = DateTime.parse(v_timestamps[i])
         flag_check = true
@@ -233,7 +235,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
       if flag_check
         # puts 'current: ' + timestamp_current.to_s
         # puts 'counting: ' + timestamp_leaving.to_s
-        if (timestamp_current - timestamp_leaving) < (delay * 1.0/1440.0)
+        if (timestamp_current - timestamp_leaving) < (delay * 1.0 / 1440.0)
           flag_check = true
           v_temp[i] = 1
         else
@@ -245,13 +247,13 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     return [space_name] + v_temp
   end
 
-  def vcols_to_csv(v_cols, file_name='sch_light.csv')
+  def vcols_to_csv(v_cols, file_name = 'sch_light.csv')
     # This function write an array of columns(arrays) into a CSV.
     # The first element of each column array is treated as the header of that column
     # Note: the column arrays in the v_cols should have the same length
     nrows = v_cols[0].length
     CSV.open(file_name, 'wb') do |csv|
-      0.upto(nrows-1) do |row|
+      0.upto(nrows - 1) do |row|
         v_row = Array.new()
         v_cols.each do |v_col|
           v_row << v_col[row]
@@ -261,7 +263,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     end
   end
 
-  def get_os_schedule_from_csv(model, file_name, schedule_name, col, skip_row=0)
+  def get_os_schedule_from_csv(model, file_name, schedule_name, col, skip_row = 0)
     # This function creates an OS:Schedule:File from a CSV at specified position
     file_name = File.realpath(file_name)
     external_file = OpenStudio::Model::ExternalFile::getExternalFile(model, file_name)
@@ -305,12 +307,12 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     model_temp_run_path = Dir.pwd + '/'
     if File.file?(occ_schedule_dir)
       # Check if user provided a occupancy schedule CSV file
-      csv_file = occ_schedule_dirs
+      csv_file = occ_schedule_dir
       runner.registerInitialCondition('Use user provided occupancy schedule file at: ' + csv_file)
     else
       # Check if schedule file at several places
-      csv_path_lookup_1 = File.expand_path("../..", model_temp_run_path) + '/files/OccSimulator_out_IDF.csv'                # Default path when run with OSW in CLI
-      csv_path_lookup_2 = File.expand_path("../../..", model_temp_run_path) + '/resources/files/OccSimulator_out_IDF.csv'   # Default path when run with OpenStudio GUI
+      csv_path_lookup_1 = File.expand_path("../..", model_temp_run_path) + "/files/#{@@default_occupant_schedule_filename}" # Default path when run with OSW in CLI
+      csv_path_lookup_2 = File.expand_path("../../..", model_temp_run_path) + "/resources/files/#{@@default_occupant_schedule_filename}" # Default path when run with OpenStudio GUI
       if File.file?(csv_path_lookup_1)
         csv_file = csv_path_lookup_1
       elsif File.file?(csv_path_lookup_2)
@@ -324,7 +326,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     v_headers = Array.new
     v_spaces_occ_sch.each do |space_occ_sch|
       if (!['Room ID', 'S0_Outdoor', 'Outside building'].include? space_occ_sch and !space_occ_sch.strip.empty?)
-          v_headers << space_occ_sch
+        v_headers << space_occ_sch
       end
     end
     v_headers = ["Time"] + v_headers
@@ -332,11 +334,11 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     puts v_headers
 
     # report initial condition of model
-    runner.registerInitialCondition("The building has #{v_headers.length-1} spaces with available occupant schedule file.")
+    runner.registerInitialCondition("The building has #{v_headers.length - 1} spaces with available occupant schedule file.")
 
     # Read the occupant count schedule file and clean it
     clean_csv = File.readlines(csv_file).drop(6).join
-    csv_table_sch = CSV.parse(clean_csv, headers:true)
+    csv_table_sch = CSV.parse(clean_csv, headers: true)
     new_csv_table = csv_table_sch.by_col!.delete_if do |column_name, column_values|
       !v_headers.include? column_name
     end
@@ -407,7 +409,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
           col = i
           temp_file_path = model_temp_run_path + file_name_light_sch
           sch_file_name = space.name.to_s + ' lght sch'
-          scheduleFile = get_os_schedule_from_csv(model, temp_file_path, sch_file_name, col, skip_row=1)
+          scheduleFile = get_os_schedule_from_csv(model, temp_file_path, sch_file_name, col, skip_row = 1)
           scheduleFile.setMinutesperItem(@@minute_per_item.to_s)
           puts scheduleFile
           model = add_light(model, space, scheduleFile)
@@ -417,7 +419,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
 
 
     # report final condition of model
-    runner.registerFinalCondition("Finished creating and adding new lighting schedules for #{v_headers.length-1} spaces.")
+    runner.registerFinalCondition("Finished creating and adding new lighting schedules for #{v_headers.length - 1} spaces.")
 
     return true
   end

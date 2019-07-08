@@ -36,3 +36,5 @@ lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.idf
 lib/measures/Occupancy_Simulator/resources/OccSimulator_out_IDF.idf
 lib/measures/Occupancy_Simulator/measure.xml
 lib/files/OccSimulator_out_IDF.csv
+lib/files/sch_light.csv
+lib/files/sch_MELs.csv
