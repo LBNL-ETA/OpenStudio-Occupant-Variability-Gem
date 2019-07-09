@@ -1004,7 +1004,8 @@ def obXML_builder(osModel, userLib, outPath, all_args)
       sch_file_name = space_name + ' occ sch'
       people_sch = get_os_schedule_from_csv(csv_file, model, sch_file_name, col_number, skip_row = 7)
       # Set minute per item (timestep = 10min) May need to change !!!
-      people_sch.setMinutesperItem('10')
+      minute_per_timestep = (60 / model.getTimestep.numberOfTimestepsPerHour).round
+      people_sch.setMinutesperItem(minute_per_timestep.to_s)
       new_people.setNumberofPeopleSchedule(people_sch)
       # Add schedule to the right space
       model.getSpaces.each do |current_space|
@@ -1090,9 +1091,6 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     # Command to call obFMU.exe
     # Remove old output file if it exists.
     external_csv_path = output_file_name + '_IDF.csv'
-    puts '======================================================='
-    puts model_temp_run_path
-    puts external_csv_path
 
     if File.exist?(external_csv_path)
       File.delete(external_csv_path)
