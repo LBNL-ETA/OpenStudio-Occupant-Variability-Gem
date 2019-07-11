@@ -955,12 +955,11 @@ def obXML_builder(osModel, userLib, outPath, all_args)
 
 
   def get_os_schedule_from_csv(file_name, model, schedule_name, col, skip_row)
+    puts 'Try to create schedule:file object...'
     file_name = File.realpath(file_name)
     external_file = OpenStudio::Model::ExternalFile::getExternalFile(model, file_name)
     external_file = external_file.get
     schedule_file = OpenStudio::Model::ScheduleFile.new(external_file, col, skip_row)
-    # schedule_type_limit = OpenStudio::Model::ScheduleTypeLimits .new(model)
-    # schedule_file.setScheduleTypeLimits(schedule_type_limit)
     schedule_file.setName(schedule_name)
     return schedule_file
   end
@@ -1005,7 +1004,8 @@ def obXML_builder(osModel, userLib, outPath, all_args)
       sch_file_name = space_name + ' occ sch'
       people_sch = get_os_schedule_from_csv(csv_file, model, sch_file_name, col_number, skip_row = 7)
       # Set minute per item (timestep = 10min) May need to change !!!
-      people_sch.setMinutesperItem('10')
+      minute_per_timestep = (60 / model.getTimestep.numberOfTimestepsPerHour).round
+      people_sch.setMinutesperItem(minute_per_timestep.to_s)
       new_people.setNumberofPeopleSchedule(people_sch)
       # Add schedule to the right space
       model.getSpaces.each do |current_space|
@@ -1089,19 +1089,16 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     coSimXML_builder(model, xml_path)
 
     # Command to call obFMU.exe
-    system(obFMU_path + 'obFMU.exe', xml_file_name, output_file_name, co_sim_file_name)
-    runner.registerInfo("Occupancy schedule simulation successfully completed.")
-    # Move the file to the temp folder
+    # Remove old output file if it exists.
     external_csv_path = output_file_name + '_IDF.csv'
 
-
-    runner.registerInfo("The old output occ sch file is at '#{external_csv_path}'")
-
-    # Important, copy the output csv from the obFMU path
-    # FileUtils.cp(output_file_name + '_IDF.csv', model_temp_resources_path) # No longer need this with OS V2.7.1 or later if the file is used in OpenStudio object
-    # FileUtils.cp(output_file_name + '.csv', model_temp_resources_path + '/files/')
-
-    runner.registerInfo("Occupancy schedule files copied to the temporary folder: #{model_temp_run_path}.")
+    if File.exist?(external_csv_path)
+      File.delete(external_csv_path)
+      runner.registerInfo("Deleted old output occ sch file at '#{external_csv_path}'")
+    end
+    
+    system(obFMU_path + 'obFMU.exe', xml_file_name, output_file_name, co_sim_file_name)
+    runner.registerInfo("Occupancy schedule simulation successfully completed.")
 
     # Read schedule file from csv
     # Update: Han Li 2018/9/14
