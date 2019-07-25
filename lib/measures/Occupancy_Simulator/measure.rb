@@ -917,10 +917,10 @@ def obXML_builder(osModel, userLib, outPath, all_args)
       isLeapYear = 'No'
     end
     dayofWeekforStartDay = model.dayofWeekforStartDay
-    beginMonth = model.runPeriod.get.getBeginMonth
-    beginDayOfMonth = model.runPeriod.get.getBeginDayOfMonth
-    endMonth = model.runPeriod.get.getEndMonth
-    endDayOfMonth = model.runPeriod.get.getEndDayOfMonth
+    beginMonth = model.getRunPeriod.getBeginMonth
+    beginDayOfMonth = model.getRunPeriod.getBeginDayOfMonth
+    endMonth = model.getRunPeriod.getEndMonth
+    endDayOfMonth = model.getRunPeriod.getEndDayOfMonth
     timestepsPerHour = model.getTimestep.numberOfTimestepsPerHour
 
     # Write XML to file
