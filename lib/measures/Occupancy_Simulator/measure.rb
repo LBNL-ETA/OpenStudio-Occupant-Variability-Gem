@@ -28,70 +28,70 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
 
   # Standard space types for office rooms
   @@v_office_space_types = [
-    'WholeBuilding - Sm Office',
-    'WholeBuilding - Md Office',
-    'WholeBuilding - Lg Office',
-    'Office',
-    'ClosedOffice',
-    'OpenOffice',
-    'SmallOffice - ClosedOffice',
-    'SmallOffice - OpenOffice',
-    'MediumOffice - ClosedOffice',
-    'MediumOffice - OpenOffice',
-    'LargeOffice - ClosedOffice',
-    'LargeOffice - OpenOffice'
+      'WholeBuilding - Sm Office',
+      'WholeBuilding - Md Office',
+      'WholeBuilding - Lg Office',
+      'Office',
+      'ClosedOffice',
+      'OpenOffice',
+      'SmallOffice - ClosedOffice',
+      'SmallOffice - OpenOffice',
+      'MediumOffice - ClosedOffice',
+      'MediumOffice - OpenOffice',
+      'LargeOffice - ClosedOffice',
+      'LargeOffice - OpenOffice'
   ]
   # Standard space types for meeting rooms
   @@v_conference_space_types = [
-    'Conference',
-    'Classroom',
-    'SmallOffice - Conference',
-    'MediumOffice - Conference',
-    'MediumOffice - Classroom',
-    'LargeOffice - Conference'
+      'Conference',
+      'Classroom',
+      'SmallOffice - Conference',
+      'MediumOffice - Conference',
+      'MediumOffice - Classroom',
+      'LargeOffice - Conference'
   ]
   # Standard space types for auxiliary rooms
   @@v_auxiliary_space_types = [
-    'OfficeLarge Data Center',
-    'OfficeLarge Main Data Center',
-    'SmallOffice - Elec/MechRoom',
-    'MediumOffice - Elec/MechRoom',
-    'LargeOffice - Elec/MechRoom'
+      'OfficeLarge Data Center',
+      'OfficeLarge Main Data Center',
+      'SmallOffice - Elec/MechRoom',
+      'MediumOffice - Elec/MechRoom',
+      'LargeOffice - Elec/MechRoom'
 
   ]
   @@v_other_space_types = [
-    'Office Attic', 
-    'BreakRoom', 
-    'Attic', 
-    'Plenum', 
-    'Corridor',
-    'Lobby',
-    'Elec/MechRoom',
-    'Stair',
-    'Restroom',
-    'Dining',
-    'Storage',
-    'Locker',
-    'Plenum Space Type',
-    'SmallOffice - Corridor',
-    'SmallOffice - Lobby',
-    'SmallOffice - Attic',
-    'SmallOffice - Restroom',
-    'SmallOffice - Stair',
-    'SmallOffice - Storage',
-    'MediumOffice - Corridor',
-    'MediumOffice - Dining',
-    'MediumOffice - Restroom',
-    'MediumOffice - Lobby',
-    'MediumOffice - Storage',
-    'MediumOffice - Stair',
-    'LargeOffice - Corridor',
-    'LargeOffice - Dining',
-    'LargeOffice - Restroom',
-    'LargeOffice - Lobby',
-    'LargeOffice - Storage',
-    'LargeOffice - Stair',
-    ''
+      'Office Attic',
+      'BreakRoom',
+      'Attic',
+      'Plenum',
+      'Corridor',
+      'Lobby',
+      'Elec/MechRoom',
+      'Stair',
+      'Restroom',
+      'Dining',
+      'Storage',
+      'Locker',
+      'Plenum Space Type',
+      'SmallOffice - Corridor',
+      'SmallOffice - Lobby',
+      'SmallOffice - Attic',
+      'SmallOffice - Restroom',
+      'SmallOffice - Stair',
+      'SmallOffice - Storage',
+      'MediumOffice - Corridor',
+      'MediumOffice - Dining',
+      'MediumOffice - Restroom',
+      'MediumOffice - Lobby',
+      'MediumOffice - Storage',
+      'MediumOffice - Stair',
+      'LargeOffice - Corridor',
+      'LargeOffice - Dining',
+      'LargeOffice - Restroom',
+      'LargeOffice - Lobby',
+      'LargeOffice - Storage',
+      'LargeOffice - Stair',
+      ''
   ]
 
   # human readable name
@@ -119,7 +119,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
 
     # Read user pre-defined library
     root_path = File.dirname(__FILE__) + '/resources/'
-    # Load reauired class and gem files
+    # Load required class and gem files
     load root_path + 'UserLibrary.rb'
     userLib = UserLibrary.new(root_path + "library.csv")
 
@@ -150,33 +150,32 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     i = 1
     # Loop through all space types, group spaces by their types
     v_space_types.each do |space_type|
-      # Loop through all spaces of current space type
-      # Puplate the valid options for each space depending on its space type
+      # Populate the valid options for each space depending on its space type
       if @@v_office_space_types.include? space_type.standardsSpaceType.to_s
         space_type_chs = office_space_type_chs
       elsif @@v_conference_space_types.include? space_type.standardsSpaceType.to_s
         space_type_chs = meeting_space_type_chs
       elsif @@v_other_space_types.include? space_type.standardsSpaceType.to_s
         space_type_chs = other_space_type_chs
-      # else
-      #   space_type_chs = other_space_type_chs
+      else
+        space_type_chs = other_space_type_chs
       end
 
       v_current_spaces = space_type.spaces
       next if not v_current_spaces.size > 0
       v_current_spaces.each do |current_space|
-        arg_name = "Space_#{i}_" + current_space.nameString
+        arg_name = current_space.nameString.gsub(' ', '-')
         @@v_space_args[current_space.nameString] = arg_name
         arg_temp = OpenStudio::Measure::OSArgument::makeChoiceArgument(arg_name, space_type_chs, true)
         arg_temp.setDisplayName("Space #{i}: " + current_space.nameString)
         # Conditionally set the default choice for the space
-        if(@@v_office_space_types.include? space_type.standardsSpaceType.to_s)
+        if (@@v_office_space_types.include? space_type.standardsSpaceType.to_s)
           arg_temp.setDefaultValue(userLib.Office_t1_name)
-        elsif(@@v_conference_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif (@@v_conference_space_types.include? space_type.standardsSpaceType.to_s)
           arg_temp.setDefaultValue(userLib.meetingRoom_t1_name)
-        elsif(@@v_auxiliary_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif (@@v_auxiliary_space_types.include? space_type.standardsSpaceType.to_s)
           arg_temp.setDefaultValue('Auxiliary')
-        elsif(@@v_other_space_types.include? space_type.standardsSpaceType.to_s)
+        elsif (@@v_other_space_types.include? space_type.standardsSpaceType.to_s)
           # If the space type is not in standard space types
           arg_temp.setDefaultValue('Other')
         end
@@ -237,112 +236,112 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
   end
 
   def space_rule_hash_wrapper(userLib)
-      # Create hashes to store space rules available in the library
+    # Create hashes to store space rules available in the library
     # Office spaces
     office_t1 = {
-      'name' => userLib.Office_t1_name,
-      'OccupancyDensity' => userLib.Office_t1_OccupancyDensity,
-      'OccupantPercentageManager' => userLib.office_t1_OccupantPercentageManager,
-      'OccupantPercentageAdminitrator' => userLib.office_t1_OccupantPercentageAdminitrator,
-      'OccupantPercentageRegularStaff' => userLib.office_t1_OccupantPercentageRegularStaff
+        'name' => userLib.Office_t1_name,
+        'OccupancyDensity' => userLib.Office_t1_OccupancyDensity,
+        'OccupantPercentageManager' => userLib.office_t1_OccupantPercentageManager,
+        'OccupantPercentageAdminitrator' => userLib.office_t1_OccupantPercentageAdminitrator,
+        'OccupantPercentageRegularStaff' => userLib.office_t1_OccupantPercentageRegularStaff
     }
     office_t2 = {
-      'name' => userLib.Office_t2_name,
-      'OccupancyDensity' => userLib.Office_t2_OccupancyDensity,
-      'OccupantPercentageManager' => userLib.office_t2_OccupantPercentageManager,
-      'OccupantPercentageAdminitrator' => userLib.office_t2_OccupantPercentageAdminitrator,
-      'OccupantPercentageRegularStaff' => userLib.office_t2_OccupantPercentageRegularStaff
+        'name' => userLib.Office_t2_name,
+        'OccupancyDensity' => userLib.Office_t2_OccupancyDensity,
+        'OccupantPercentageManager' => userLib.office_t2_OccupantPercentageManager,
+        'OccupantPercentageAdminitrator' => userLib.office_t2_OccupantPercentageAdminitrator,
+        'OccupantPercentageRegularStaff' => userLib.office_t2_OccupantPercentageRegularStaff
     }
     office_t3 = {
-      'name' => userLib.Office_t3_name,
-      'OccupancyDensity' => userLib.Office_t3_OccupancyDensity,
-      'OccupantPercentageManager' => userLib.office_t3_OccupantPercentageManager,
-      'OccupantPercentageAdminitrator' => userLib.office_t3_OccupantPercentageAdminitrator,
-      'OccupantPercentageRegularStaff' => userLib.office_t3_OccupantPercentageRegularStaff
+        'name' => userLib.Office_t3_name,
+        'OccupancyDensity' => userLib.Office_t3_OccupancyDensity,
+        'OccupantPercentageManager' => userLib.office_t3_OccupantPercentageManager,
+        'OccupantPercentageAdminitrator' => userLib.office_t3_OccupantPercentageAdminitrator,
+        'OccupantPercentageRegularStaff' => userLib.office_t3_OccupantPercentageRegularStaff
     }
     office_t4 = {
-      'name' => userLib.Office_t4_name,
-      'OccupancyDensity' => userLib.Office_t4_OccupancyDensity,
-      'OccupantPercentageManager' => userLib.office_t4_OccupantPercentageManager,
-      'OccupantPercentageAdminitrator' => userLib.office_t4_OccupantPercentageAdminitrator,
-      'OccupantPercentageRegularStaff' => userLib.office_t4_OccupantPercentageRegularStaff
+        'name' => userLib.Office_t4_name,
+        'OccupancyDensity' => userLib.Office_t4_OccupancyDensity,
+        'OccupantPercentageManager' => userLib.office_t4_OccupantPercentageManager,
+        'OccupantPercentageAdminitrator' => userLib.office_t4_OccupantPercentageAdminitrator,
+        'OccupantPercentageRegularStaff' => userLib.office_t4_OccupantPercentageRegularStaff
     }
     office_t5 = {
-      'name' => userLib.Office_t5_name,
-      'OccupancyDensity' => userLib.Office_t5_OccupancyDensity,
-      'OccupantPercentageManager' => userLib.office_t5_OccupantPercentageManager,
-      'OccupantPercentageAdminitrator' => userLib.office_t5_OccupantPercentageAdminitrator,
-      'OccupantPercentageRegularStaff' => userLib.office_t5_OccupantPercentageRegularStaff
+        'name' => userLib.Office_t5_name,
+        'OccupancyDensity' => userLib.Office_t5_OccupancyDensity,
+        'OccupantPercentageManager' => userLib.office_t5_OccupantPercentageManager,
+        'OccupantPercentageAdminitrator' => userLib.office_t5_OccupantPercentageAdminitrator,
+        'OccupantPercentageRegularStaff' => userLib.office_t5_OccupantPercentageRegularStaff
     }
 
     # Meeting spaces
     meeting_t1 = {
-      'name' => userLib.meetingRoom_t1_name,
-      'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t1_MinimumNumberOfMeetingPerDay,
-      'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t1_MaximumNumberOfMeetingPerDay,
-      'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t1_MinimumNumberOfPeoplePerMeeting,
-      'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t1_MaximumNumberOfPeoplePerMeeting,
-      'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_30_minMeetings,
-      'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_60_minMeetings,
-      'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_90_minMeetings,
-      'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_120_minMeetings
+        'name' => userLib.meetingRoom_t1_name,
+        'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t1_MinimumNumberOfMeetingPerDay,
+        'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t1_MaximumNumberOfMeetingPerDay,
+        'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t1_MinimumNumberOfPeoplePerMeeting,
+        'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t1_MaximumNumberOfPeoplePerMeeting,
+        'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_30_minMeetings,
+        'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_60_minMeetings,
+        'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_90_minMeetings,
+        'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t1_ProbabilityOf_120_minMeetings
     }
     meeting_t2 = {
-      'name' => userLib.meetingRoom_t2_name,
-      'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t2_MinimumNumberOfMeetingPerDay,
-      'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t2_MaximumNumberOfMeetingPerDay,
-      'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t2_MinimumNumberOfPeoplePerMeeting,
-      'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t2_MaximumNumberOfPeoplePerMeeting,
-      'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_30_minMeetings,
-      'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_60_minMeetings,
-      'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_90_minMeetings,
-      'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_120_minMeetings
+        'name' => userLib.meetingRoom_t2_name,
+        'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t2_MinimumNumberOfMeetingPerDay,
+        'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t2_MaximumNumberOfMeetingPerDay,
+        'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t2_MinimumNumberOfPeoplePerMeeting,
+        'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t2_MaximumNumberOfPeoplePerMeeting,
+        'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_30_minMeetings,
+        'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_60_minMeetings,
+        'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_90_minMeetings,
+        'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t2_ProbabilityOf_120_minMeetings
     }
     meeting_t3 = {
-      'name' => userLib.meetingRoom_t3_name,
-      'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t3_MinimumNumberOfMeetingPerDay,
-      'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t3_MaximumNumberOfMeetingPerDay,
-      'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t3_MinimumNumberOfPeoplePerMeeting,
-      'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t3_MaximumNumberOfPeoplePerMeeting,
-      'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_30_minMeetings,
-      'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_60_minMeetings,
-      'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_90_minMeetings,
-      'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_120_minMeetings
+        'name' => userLib.meetingRoom_t3_name,
+        'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t3_MinimumNumberOfMeetingPerDay,
+        'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t3_MaximumNumberOfMeetingPerDay,
+        'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t3_MinimumNumberOfPeoplePerMeeting,
+        'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t3_MaximumNumberOfPeoplePerMeeting,
+        'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_30_minMeetings,
+        'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_60_minMeetings,
+        'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_90_minMeetings,
+        'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t3_ProbabilityOf_120_minMeetings
     }
     meeting_t4 = {
-      'name' => userLib.meetingRoom_t4_name,
-      'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t4_MinimumNumberOfMeetingPerDay,
-      'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t4_MaximumNumberOfMeetingPerDay,
-      'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t4_MinimumNumberOfPeoplePerMeeting,
-      'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t4_MaximumNumberOfPeoplePerMeeting,
-      'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_30_minMeetings,
-      'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_60_minMeetings,
-      'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_90_minMeetings,
-      'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_120_minMeetings
+        'name' => userLib.meetingRoom_t4_name,
+        'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t4_MinimumNumberOfMeetingPerDay,
+        'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t4_MaximumNumberOfMeetingPerDay,
+        'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t4_MinimumNumberOfPeoplePerMeeting,
+        'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t4_MaximumNumberOfPeoplePerMeeting,
+        'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_30_minMeetings,
+        'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_60_minMeetings,
+        'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_90_minMeetings,
+        'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t4_ProbabilityOf_120_minMeetings
     }
     meeting_t5 = {
-      'name' => userLib.meetingRoom_t5_name,
-      'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t5_MinimumNumberOfMeetingPerDay,
-      'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t5_MaximumNumberOfMeetingPerDay,
-      'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t5_MinimumNumberOfPeoplePerMeeting,
-      'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t5_MaximumNumberOfPeoplePerMeeting,
-      'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_30_minMeetings,
-      'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_60_minMeetings,
-      'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_90_minMeetings,
-      'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_120_minMeetings
+        'name' => userLib.meetingRoom_t5_name,
+        'MinimumNumberOfMeetingPerDay' => userLib.meetingRoom_t5_MinimumNumberOfMeetingPerDay,
+        'MaximumNumberOfMeetingPerDay' => userLib.meetingRoom_t5_MaximumNumberOfMeetingPerDay,
+        'MinimumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t5_MinimumNumberOfPeoplePerMeeting,
+        'MaximumNumberOfPeoplePerMeeting' => userLib.meetingRoom_t5_MaximumNumberOfPeoplePerMeeting,
+        'ProbabilityOf_30_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_30_minMeetings,
+        'ProbabilityOf_60_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_60_minMeetings,
+        'ProbabilityOf_90_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_90_minMeetings,
+        'ProbabilityOf_120_minMeetings' => userLib.meetingRoom_t5_ProbabilityOf_120_minMeetings
     }
 
     space_rules = {
-      userLib.Office_t1_name => office_t1,
-      userLib.Office_t2_name => office_t2,
-      userLib.Office_t3_name => office_t3,
-      userLib.Office_t4_name => office_t4,
-      userLib.Office_t5_name => office_t5,
-      userLib.meetingRoom_t1_name => meeting_t1,
-      userLib.meetingRoom_t2_name => meeting_t2,
-      userLib.meetingRoom_t3_name => meeting_t3,
-      userLib.meetingRoom_t4_name => meeting_t4,
-      userLib.meetingRoom_t5_name => meeting_t5
+        userLib.Office_t1_name => office_t1,
+        userLib.Office_t2_name => office_t2,
+        userLib.Office_t3_name => office_t3,
+        userLib.Office_t4_name => office_t4,
+        userLib.Office_t5_name => office_t5,
+        userLib.meetingRoom_t1_name => meeting_t1,
+        userLib.meetingRoom_t2_name => meeting_t2,
+        userLib.meetingRoom_t3_name => meeting_t3,
+        userLib.meetingRoom_t4_name => meeting_t4,
+        userLib.meetingRoom_t5_name => meeting_t5
     }
 
     return space_rules
@@ -353,55 +352,51 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
   # @param userLib [UserLibrary]
   #
   # @return [type] [description]
-def obXML_builder(osModel, userLib, outPath, all_args)
+  def obXML_builder(osModel, userLib, outPath, all_args)
     # Get general information ----------------------------------------------------
     # Get specific occupancy assumptions for each space
     flag_space_occ_choice = all_args[0]
     space_rules = space_rule_hash_wrapper(userLib)
 
     v_space_types = osModel.getSpaceTypes
-    v_meetingSpaces = Array.new()
-    v_officeSpaces = Array.new()
-    v_officeAreas = Array.new()
-    v_nOccOffice = Array.new()
-    v_allOccID = Array.new()
-    v_occBhvrID = Array.new()
-    v_occBhvrID = ["Regular_staff_0", "Manager_0", "Administrator_0"]
-    v_holidays = Array.new()
+    v_meeting_spaces = Array.new
+    v_office_spaces = Array.new
+    v_all_occ_id = Array.new
+    v_occ_bhvr_ID = ["Regular_staff_0", "Manager_0", "Administrator_0"]
     v_holidays = [
-      userLib.usHolidayNewYearsDay,
-      userLib.usHolidayMartinLutherKingJrDay,
-      userLib.usHolidayGeorgeWashingtonsBirthday,
-      userLib.usHolidayMemorialDay,
-      userLib.usHolidayIndependenceDay,
-      userLib.usHolidayLaborDay,
-      userLib.usHolidayColumbusDay,
-      userLib.usHolidayVeteransDay,
-      userLib.usHolidayThanksgivingDay,
-      userLib.usHolidayChristmasDay,
-      userLib.customHolidayCustomHoliday_1,
-      userLib.customHolidayCustomHoliday_2,
-      userLib.customHolidayCustomHoliday_3,
-      userLib.customHolidayCustomHoliday_4,
-      userLib.customHolidayCustomHoliday_5
+        userLib.usHolidayNewYearsDay,
+        userLib.usHolidayMartinLutherKingJrDay,
+        userLib.usHolidayGeorgeWashingtonsBirthday,
+        userLib.usHolidayMemorialDay,
+        userLib.usHolidayIndependenceDay,
+        userLib.usHolidayLaborDay,
+        userLib.usHolidayColumbusDay,
+        userLib.usHolidayVeteransDay,
+        userLib.usHolidayThanksgivingDay,
+        userLib.usHolidayChristmasDay,
+        userLib.customHolidayCustomHoliday_1,
+        userLib.customHolidayCustomHoliday_2,
+        userLib.customHolidayCustomHoliday_3,
+        userLib.customHolidayCustomHoliday_4,
+        userLib.customHolidayCustomHoliday_5
     ]
 
     # Loop through all space types
     v_space_types.each do |space_type|
       if @@v_office_space_types.include? space_type.standardsSpaceType.to_s
         # Add the corresponding office spaces to the array
-        v_officeSpaces += space_type.spaces
+        v_office_spaces += space_type.spaces
       elsif @@v_conference_space_types.include? space_type.standardsSpaceType.to_s
         # Add the corresponding conference spaces to the array
-        v_meetingSpaces += space_type.spaces
+        v_meeting_spaces += space_type.spaces
       end
     end
 
     # Number of space and number of people
-    n_space = v_officeSpaces.length
+    n_space = v_office_spaces.length
     n_occ = 0
     n_occ_hash = Hash.new
-    v_officeSpaces.each do |officeSpace|
+    v_office_spaces.each do |officeSpace|
       space_type_selected = flag_space_occ_choice[officeSpace.name.to_s]
       n_occ_current = (officeSpace.floorArea / space_rules[space_type_selected]['OccupancyDensity']).floor
       n_occ += n_occ_current
@@ -410,7 +405,7 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     end
 
     # Generate the obXML file
-    f = File.new(outPath + "obXML.xml",  "w")
+    f = File.new(outPath + "/obXML.xml", "w")
 
     f.puts('<?xml version="1.0"?>')
     f.puts('<OccupantBehavior xsi:noNamespaceSchemaLocation="obXML_v1.3.2.xsd" ID="OS001" Version="1.3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">')
@@ -427,7 +422,7 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     ### Spaces
     f.puts("<Spaces ID='All_Spaces'>")
     #### Space
-    f.puts("<Space ID='S0_Outdoor'>")
+    f.puts("<Space ID='Outdoor'>")
     ##### Space Type
     f.puts("<Type>Outdoor</Type>")
     f.puts("</Space>")
@@ -439,9 +434,9 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     space_ID_map = Hash.new
 
     # ~ Meeting room spaces
-    v_meetingSpaces.each_with_index do |meetingSpace, index|
-      meetingSpaceName = meetingSpace.nameString
-      space_type_selected = flag_space_occ_choice[meetingSpaceName]
+    v_meeting_spaces.each_with_index do |meetingSpace, index|
+      meeting_space_name = meetingSpace.nameString
+      space_type_selected = flag_space_occ_choice[meeting_space_name]
       min_meeting_per_day = space_rules[space_type_selected]['MinimumNumberOfMeetingPerDay']
       max_meeting_per_day = space_rules[space_type_selected]['MaximumNumberOfMeetingPerDay']
       min_occupant_per_meeting = space_rules[space_type_selected]['MinimumNumberOfPeoplePerMeeting']
@@ -452,11 +447,10 @@ def obXML_builder(osModel, userLib, outPath, all_args)
       probabilityOf_120_minMeetings = space_rules[space_type_selected]['ProbabilityOf_120_minMeetings']
 
       # Assign the space id and name, and save it to the hash
-      spaceIDString = "S#{index + 1 + all_index}_#{meetingSpaceName}"
-      space_ID_map[meetingSpaceName] = index + 1 + all_index
+      space_ID_map[meeting_space_name] = index + 1 + all_index
       n_occ_hash[meetingSpace.nameString] = max_occupant_per_meeting
 
-      f.puts("<Space ID='" + spaceIDString + "'>")
+      f.puts("<Space ID='" + meeting_space_name + "'>")
       f.puts("<Type>MeetingRoom</Type>")
       f.puts("<MeetingEvent>")
       f.puts("<SeasonType>All</SeasonType>")
@@ -490,33 +484,32 @@ def obXML_builder(osModel, userLib, outPath, all_args)
       f.puts("</Space>")
     end
 
-    all_index = all_index + v_meetingSpaces.length
+    all_index = all_index + v_meeting_spaces.length
 
     # ~ Office spaces
-    occID_spaceName_Dct = Hash.new
-    v_officeSpaces.each_with_index do |officeSpace, index|
+    occ_id_spaceName_hash = Hash.new
+    v_office_spaces.each_with_index do |officeSpace, index|
       # Get space basic information
-      officeSpaceName = officeSpace.nameString
-      space_type_selected = flag_space_occ_choice[officeSpaceName]
+      office_space_name = officeSpace.nameString
+      space_type_selected = flag_space_occ_choice[office_space_name]
       nOcc = (officeSpace.floorArea / space_rules[space_type_selected]['OccupancyDensity']).floor
 
       # Assign the space id and name, and save it to the hash
-      spaceIDString = "S#{index + 1 + all_index}_#{officeSpaceName}"
-      space_ID_map[officeSpaceName] = index + 1 + all_index
+      space_ID_map[office_space_name] = index + 1 + all_index
 
-      f.puts("<Space ID='" +  spaceIDString + "'>")
+      f.puts("<Space ID='" + office_space_name + "'>")
       f.puts("<Type>OfficeShared</Type>")
       # Add occupants to each space
       for i in 0..(nOcc - 1)
-        occIDString = "#{spaceIDString}_O#{i + 1}"
-        f.puts("<OccupantID>" + occIDString + "</OccupantID>")
-        v_allOccID << occIDString
-        occID_spaceName_Dct[occIDString] = officeSpaceName
+        occ_id_string = "#{office_space_name}_Occ_#{i + 1}"
+        f.puts("<OccupantID>" + occ_id_string + "</OccupantID>")
+        v_all_occ_id << occ_id_string
+        occ_id_spaceName_hash[occ_id_string] = office_space_name
       end
       f.puts("</Space>")
     end
 
-    all_index = all_index + v_officeSpaces.length
+    all_index = all_index + v_office_spaces.length
 
     #### --Space
     f.puts("</Spaces>")
@@ -530,29 +523,29 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     # Occupants
     f.puts('<Occupants>')
     ## Occupant
-    v_allOccID.each_with_index do |occID, index|
-      f.puts("<Occupant ID='" + occID + "'>")    # puts '---->'
-      space_type_selected = flag_space_occ_choice[occID_spaceName_Dct[occID]]
+    v_all_occ_id.each_with_index do |occID, index|
+      f.puts("<Occupant ID='" + occID + "'>") # puts '---->'
+      space_type_selected = flag_space_occ_choice[occ_id_spaceName_hash[occID]]
       f.puts("<LifeStyle>Norm</LifeStyle>")
       # Randomly assign occ type by probability
-      pDct = {
-        "Manager" => space_rules[space_type_selected]['OccupantPercentageManager'],
-        "Administrator" => space_rules[space_type_selected]['OccupantPercentageAdminitrator'],
-        "Regular staff" => space_rules[space_type_selected]['OccupantPercentageRegularStaff']
+      p_hash = {
+          "Manager" => space_rules[space_type_selected]['OccupantPercentageManager'],
+          "Administrator" => space_rules[space_type_selected]['OccupantPercentageAdminitrator'],
+          "Regular staff" => space_rules[space_type_selected]['OccupantPercentageRegularStaff']
       }
-      occType = assignOccType(pDct)
+      occType = assignOccType(p_hash)
 
       f.puts("<JobType>" + occType + " </JobType>")
       # Assign movement behavior based on occ type drawed previously
       case occType
       when "Regular staff"
-        occMvmntBhvrID = "Regular_staff_0"
+        occ_mvmnt_bhvr_id = "Regular_staff_0"
       when "Manager"
-        occMvmntBhvrID = "Manager_0"
+        occ_mvmnt_bhvr_id = "Manager_0"
       when "Administrator"
-        occMvmntBhvrID = "Administrator_0"
+        occ_mvmnt_bhvr_id = "Administrator_0"
       end
-      f.puts("<MovementBehaviorID>" + occMvmntBhvrID + " </MovementBehaviorID>")
+      f.puts("<MovementBehaviorID>" + occ_mvmnt_bhvr_id + " </MovementBehaviorID>")
 
       f.puts("</Occupant>")
     end
@@ -563,7 +556,7 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     # Behaviors
     f.puts('<Behaviors>')
 
-    v_occBhvrID.each do |occBhvrID|
+    v_occ_bhvr_ID.each do |occBhvrID|
       ## Movement Behavior
       f.puts("<MovementBehavior ID='" + occBhvrID + "'>")
       case occBhvrID
@@ -924,7 +917,7 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     timestepsPerHour = model.getTimestep.numberOfTimestepsPerHour
 
     # Write XML to file
-    f = File.new(outPath + "obCoSim.xml",  "w")
+    f = File.new(outPath + "/obCoSim.xml", "w")
     # CoSimulationParameters
     f.puts('<CoSimulationParameters>')
     ## SpaceNameMapping
@@ -950,12 +943,14 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     # --CoSimulationParameters
     f.close
 
+    puts '------------------------------------------------------------------'
     puts 'coSimXML.xml file created.'
+    puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
   end
 
 
   def get_os_schedule_from_csv(file_name, model, schedule_name, col, skip_row)
-    puts 'Try to create schedule:file object...'
+    puts '---> Try to create schedule:file object...'
     file_name = File.realpath(file_name)
     external_file = OpenStudio::Model::ExternalFile::getExternalFile(model, file_name)
     external_file = external_file.get
@@ -1025,32 +1020,33 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     super(model, runner, user_arguments)
 
     # use the built-in error checking
-    # if !runner.validateUserArguments(arguments(model), user_arguments)
-    #   return false
-    # end
+    if !runner.validateUserArguments(arguments(model), user_arguments)
+      return false
+    end
 
     # report initial condition of model
     runner.registerInitialCondition("Start.")
 
-    # get current file directory
-    model_temp_run_path = Dir.pwd + '/'
-    model_temp_measure_path = File.expand_path("../../..", model_temp_run_path) + '/resources/measures/Occupancy_Simulator/'
-    model_temp_resources_path =File.expand_path("../../..", model_temp_run_path) + '/resources/'
+    # For run in OS GUI
+    measure_root_path = File.dirname(__FILE__)
+    measure_resources_path = measure_root_path + '/resources/'
+    runner.registerInfo("Measure_resources_path is: '#{measure_resources_path}'")
 
-    runner.registerInfo("The temp run directory is '#{model_temp_run_path}'")
-    obFMU_path = File.dirname(__FILE__) + '/resources/'
-    runner.registerInfo("obFMU_path is '#{obFMU_path}'")
+    # For run in OSW
+    temp_measure_resources_path = File.expand_path("../../..", Dir.pwd + '/') + '/resources/measures/Occupancy_Simulator/resources/'
+    runner.registerInfo("The temp measure directory is: '#{temp_measure_resources_path}'")
 
-    runner.registerInfo("The temp measure directory is '#{model_temp_measure_path}'")
-    runner.registerInfo("The temp resources directory is '#{model_temp_resources_path}'")
-
-    # Load reauired class
-    if File.directory?(model_temp_measure_path + 'resources')
-      load model_temp_measure_path + 'resources/UserLibrary.rb'
-      userLib = UserLibrary.new(model_temp_measure_path + "resources/library.csv")
+    # Load uer-defined library
+    if File.directory?(temp_measure_resources_path)
+      load temp_measure_resources_path + 'UserLibrary.rb'
+      userLib = UserLibrary.new(temp_measure_resources_path + "library.csv")
+      puts "---> Loading user-defined library from temporary measure resources path: #{temp_measure_resources_path}"
+      runner.registerInfo("Loading user-defined library from temporary measure resources path: #{temp_measure_resources_path}")
     else
-      load obFMU_path + 'UserLibrary.rb'
-      userLib = UserLibrary.new(obFMU_path + "library.csv")
+      load measure_resources_path + 'UserLibrary.rb'
+      userLib = UserLibrary.new(measure_resources_path + "library.csv")
+      puts "---> Loading user-defined library from measure resources path: #{measure_resources_path}"
+      runner.registerInfo("Loading user-defined library from measure resources path: #{measure_resources_path}")
     end
 
     # ### Get user input for whether to use default assumptions by space types
@@ -1075,33 +1071,28 @@ def obXML_builder(osModel, userLib, outPath, all_args)
     all_args[0] = occ_type_arg_vals
 
     # Read obXML file and call obFMU.exe
-    # For now, we assume obXML is generated in the same path under ./OSimulator_out
-    output_path = obFMU_path + 'OccSimulator_out'
-    xml_path = obFMU_path  # where the obXMl and coSimXML files are stored
-    xml_file_name = xml_path + "obXML.xml"
-    co_sim_file_name = xml_path + "obCoSim.xml"
-
-    # Change this to the temp path (Dir)
-    output_file_name = output_path
+    output_path_prefix = measure_root_path + '/OccSimulator_out'
+    obFMU_xml_file_path = measure_root_path + "/obXML.xml"
+    coSim_xml_file_path = measure_root_path + "/obCoSim.xml"
 
     # Generate obXML and coSimXML files
-    result_hashes = obXML_builder(model, userLib, xml_path, all_args)
-    coSimXML_builder(model, xml_path)
+    result_hashes = obXML_builder(model, userLib, measure_root_path, all_args)
+    coSimXML_builder(model, measure_root_path)
 
     # Command to call obFMU.exe
     # Remove old output file if it exists.
-    external_csv_path = output_file_name + '_IDF.csv'
+    external_csv_path = output_path_prefix + '_IDF.csv'
 
+    # Delete the external CSV file is any exists.
     if File.exist?(external_csv_path)
       File.delete(external_csv_path)
       runner.registerInfo("Deleted old output occ sch file at '#{external_csv_path}'")
     end
-    
-    system(obFMU_path + 'obFMU.exe', xml_file_name, output_file_name, co_sim_file_name)
+
+    # Run occupancy simulator
+    system(measure_resources_path + 'obFMU.exe', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
     runner.registerInfo("Occupancy schedule simulation successfully completed.")
 
-    # Read schedule file from csv
-    # Update: Han Li 2018/9/14
     # Read schedule back to osm
     runner.registerInfo("Reading stochastic occupancy schedule back to the osm.")
 
@@ -1110,7 +1101,6 @@ def obXML_builder(osModel, userLib, outPath, all_args)
 
     all_args[1] = space_ID_map
     all_args[2] = n_occ_hash
-
 
     # Remove all people object (if exist) in the old model
     model.getPeoples.each do |os_people|
