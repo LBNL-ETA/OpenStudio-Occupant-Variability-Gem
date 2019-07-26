@@ -11,6 +11,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
 
   # Default file name set by occupancy simulator, change according in the future as needed.
   @@default_occupant_schedule_filename = 'OccSimulator_out_IDF.csv'
+  @@mels_schedule_CSV_name = 'sch_MELs.csv'
 
   # The variables are used for the linear relation between people count and MELs
   @@a_office = 60.0 # MELs baseload: 60 W/max_person
@@ -168,10 +169,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
       next if not v_current_spaces.size > 0
       v_current_spaces.each do |current_space|
 
-        # arg_temp = OpenStudio::Measure::OSArgument::makeChoiceArgument("Space_#{i}_" + current_space.nameString, space_type_chs, true)
-        # arg_temp.setDisplayName("Space #{i}: " + current_space.nameString)
-
-        arg_name = "Space_#{i}_" + current_space.nameString
+        arg_name = current_space.nameString.gsub(' ', '-')
         @@v_space_args[current_space.nameString] = arg_name
         arg_temp = OpenStudio::Measure::OSArgument::makeChoiceArgument(arg_name, space_type_chs, true)
         arg_temp.setDisplayName("Space #{i}: " + current_space.nameString)
@@ -232,7 +230,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
     return [space_name] + v_temp
   end
 
-  def vcols_to_csv(v_cols, file_name = 'sch_MELs.csv')
+  def vcols_to_csv(v_cols, file_name = @@mels_schedule_CSV_name)
     # This function write an array of columns(arrays) into a CSV.
     # The first element of each column array is treated as the header of that column
     # Note: the column arrays in the v_cols should have the same length
@@ -262,10 +260,10 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    # # use the built-in error checking
-    # if !runner.validateUserArguments(arguments(model), user_arguments)
-    #   return false
-    # end
+    # use the built-in error checking
+    if !runner.validateUserArguments(arguments(model), user_arguments)
+      return false
+    end
 
     runner.registerInfo("Start to create electrical equipment measure from occupant schedule")
 
@@ -293,10 +291,12 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
 
     puts equip_space_type_arg_vals
 
-
     ### Start creating new lighting schedules based on occupancy schedule
     occ_schedule_dir = runner.getStringArgumentValue('occ_schedule_dir', user_arguments)
     model_temp_run_path = Dir.pwd + '/'
+    measure_root_path = File.dirname(__FILE__)
+
+
     if File.file?(occ_schedule_dir)
       csv_file = occ_schedule_dir
       puts 'Use user provided occupancy schedule file at: ' + csv_file
@@ -317,13 +317,11 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
     v_spaces_occ_sch = File.readlines(csv_file)[3].split(',') # Room ID is saved in 4th row of the occ_sch file
     v_headers = Array.new
     v_spaces_occ_sch.each do |space_occ_sch|
-      if (!['Room ID', 'S0_Outdoor', 'Outside building'].include? space_occ_sch and !space_occ_sch.strip.empty?)
+      if (!['Room ID', 'Outdoor', 'Outside building'].include? space_occ_sch and !space_occ_sch.strip.empty?)
         v_headers << space_occ_sch
       end
     end
     v_headers = ["Time"] + v_headers
-
-    # puts v_headers
 
     # report initial condition of model
     runner.registerInitialCondition("The building has #{v_headers.length - 1} spaces with available occupant schedule file.")
@@ -343,7 +341,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
     v_headers.each do |header|
       if header != 'Time'
         space_name = header
-        space_type = equip_space_type_arg_vals[header.partition('_').last]
+        space_type = equip_space_type_arg_vals[space_name]
         v_occ_n = new_csv_table.by_col![space_name]
         v_equip = create_equip_sch_from_occupant_count(space_name, space_type, v_occ_n)
         v_cols << v_equip
@@ -352,17 +350,13 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
 
     runner.registerInfo("Writing new electrical equipment schedules to CSV file.")
     # Write new electrical equipment schedule file to CSV
-    file_name_equip_sch = 'sch_MELs.csv'
-    vcols_to_csv(v_cols)
-    # Important: copy the output csv from the temp run path, so that the external file object can find the file during run
-    # FileUtils.cp(model_temp_run_path + file_name_equip_sch, model_temp_resources_path)
+    file_name_equip_sch = "#{measure_root_path}/#{@@mels_schedule_CSV_name}"
+    vcols_to_csv(v_cols, file_name_equip_sch)
 
     # Add new electrical equipment schedule from the CSV file created
     runner.registerInfo("Adding new OS:Schedule:File objects to the model....")
 
     # Only remove the old equipment schedule for office and comference rooms
-    puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-
     runner.registerInfo("Removing old OS:ElectricEquipment and OS:ElectricEquipment:Definition for office and conference rooms.")
     # Remove old electric equipment definition objects for office and conference rooms
     v_space_types.each do |space_type|
@@ -392,16 +386,15 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
       end
     end
 
-
     runner.registerInfo("Adding new OS:ElectricEquipment and OS:ElectricEquipment:Definition for office and conference rooms.")
     # Add new schedules
     v_spaces = model.getSpaces
     v_spaces.each do |space|
       # puts space.name.to_s
       v_headers.each_with_index do |s_space_name, i|
-        if s_space_name.partition('_').last == space.name.to_s
+        if s_space_name == space.name.to_s
           col = i
-          temp_file_path = model_temp_run_path + file_name_equip_sch
+          temp_file_path = file_name_equip_sch
           sch_file_name = space.name.to_s + ' equip sch'
           scheduleFile = get_os_schedule_from_csv(model, temp_file_path, sch_file_name, col, skip_row = 1)
           # puts scheduleFile
