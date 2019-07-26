@@ -1019,6 +1019,9 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    puts "=" * 80
+    puts '---> Entering RUN'
+
     # use the built-in error checking
     if !runner.validateUserArguments(arguments(model), user_arguments)
       return false
@@ -1072,6 +1075,10 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
 
     # Read obXML file and call obFMU.exe
     output_path_prefix = measure_root_path + '/OccSimulator_out'
+    puts '&' * 80
+    puts File.dirname(output_path_prefix)
+    puts File.expand_path("..", File.dirname(output_path_prefix))
+
     obFMU_xml_file_path = measure_root_path + "/obXML.xml"
     coSim_xml_file_path = measure_root_path + "/obCoSim.xml"
 
@@ -1088,6 +1095,9 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
       File.delete(external_csv_path)
       runner.registerInfo("Deleted old output occ sch file at '#{external_csv_path}'")
     end
+
+    puts "~" * 80
+    puts external_csv_path
 
     # Run occupancy simulator
     system(measure_resources_path + 'obFMU.exe', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)

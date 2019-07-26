@@ -11,6 +11,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
   @@v_space_args = Hash.new
   # Default file name set by occupancy simulator, change according in the future as needed.
   @@default_occupant_schedule_filename = 'OccSimulator_out_IDF.csv'
+  @@lighting_schedule_CSV_name = 'sch_light.csv'
 
   @@LPD = 8.5 # Default lighting power density: 8.5 W/m2
   @@F_rad = 0.7 # Default radiation fraction: 0.7
@@ -168,8 +169,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
       v_current_spaces = space_type.spaces
       next if not v_current_spaces.size > 0
       v_current_spaces.each do |current_space|
-
-        arg_name = "Space_#{i}_" + current_space.nameString
+        arg_name = current_space.nameString.gsub(' ', '-')
         @@v_space_args[current_space.nameString] = arg_name
         arg_temp = OpenStudio::Measure::OSArgument::makeChoiceArgument(arg_name, space_type_chs, true)
         arg_temp.setDisplayName("Space #{i}: " + current_space.nameString)
@@ -247,7 +247,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     return [space_name] + v_temp
   end
 
-  def vcols_to_csv(v_cols, file_name = 'sch_light.csv')
+  def vcols_to_csv(v_cols, file_name = @@lighting_schedule_CSV_name)
     # This function write an array of columns(arrays) into a CSV.
     # The first element of each column array is treated as the header of that column
     # Note: the column arrays in the v_cols should have the same length
@@ -305,14 +305,26 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     ### Start creating new lighting schedules based on occupancy schedule
     occ_schedule_dir = runner.getStringArgumentValue('occ_schedule_dir', user_arguments)
     model_temp_run_path = Dir.pwd + '/'
+    measure_root_path = File.dirname(__FILE__)
+
+    puts '=' * 80
+    puts measure_root_path
+
     if File.file?(occ_schedule_dir)
       # Check if user provided a occupancy schedule CSV file
       csv_file = occ_schedule_dir
       runner.registerInitialCondition('Use user provided occupancy schedule file at: ' + csv_file)
     else
       # Check if schedule file at several places
-      csv_path_lookup_1 = File.expand_path("../..", model_temp_run_path) + "/files/#{@@default_occupant_schedule_filename}" # Default path when run with OSW in CLI
-      csv_path_lookup_2 = File.expand_path("../../..", model_temp_run_path) + "/resources/files/#{@@default_occupant_schedule_filename}" # Default path when run with OpenStudio GUI
+      # 1. Default path when run with OSW in CLI
+      csv_path_lookup_1 = File.expand_path("../..", model_temp_run_path) + "/files/#{@@default_occupant_schedule_filename}"
+      puts '=' * 80
+      puts csv_path_lookup_1
+      # 2. Default path when run with OpenStudio GUI
+      csv_path_lookup_2 = File.expand_path("../../..", model_temp_run_path) + "/resources/files/#{@@default_occupant_schedule_filename}"
+      puts '=' * 80
+      puts csv_path_lookup_2
+
       if File.file?(csv_path_lookup_1)
         csv_file = csv_path_lookup_1
       elsif File.file?(csv_path_lookup_2)
@@ -327,13 +339,11 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     v_spaces_occ_sch = File.readlines(csv_file)[3].split(',') # Room ID is saved in 4th row of the occ_sch file
     v_headers = Array.new
     v_spaces_occ_sch.each do |space_occ_sch|
-      if !['Room ID', 'S0_Outdoor', 'Outside building'].include? space_occ_sch and !space_occ_sch.strip.empty?
+      if !['Room ID', 'Outdoor', 'Outside building'].include? space_occ_sch and !space_occ_sch.strip.empty?
         v_headers << space_occ_sch
       end
     end
     v_headers = ["Time"] + v_headers
-
-    puts v_headers
 
     # report initial condition of model
     runner.registerInitialCondition("The building has #{v_headers.length - 1} spaces with available occupant schedule file.")
@@ -353,9 +363,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
     v_ts = new_csv_table.by_col!['Time']
     v_headers.each do |header|
       if header != 'Time'
-        # space_name = header.partition('_').last
         space_name = header
-        # puts space_name
         v_occ_n = new_csv_table.by_col![space_name]
         v_light = create_lighting_sch_from_occupancy_count(space_name, v_ts, v_occ_n, @@off_delay)
         v_cols << v_light
@@ -364,17 +372,10 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
 
     runner.registerInfo("Writing new lighting schedules to CSV file.")
     # Write new lighting schedule file to CSV
-    file_name_light_sch = 'sch_light.csv'
+    file_name_light_sch = measure_root_path + "/#{@@lighting_schedule_CSV_name}"
     vcols_to_csv(v_cols, file_name_light_sch)
-    # Important: copy the output csv from the temp run path, so that the external file object can find the file during run
-    puts 'Copy from: ' + model_temp_run_path + file_name_light_sch
-    # puts 'Copy to: ' + model_temp_resources_path
-    # FileUtils.cp(model_temp_run_path + file_name_light_sch, model_temp_resources_path)
-
 
     # Add new lighting schedule from the CSV file created
-    runner.registerInfo("Adding new OS:Schedule:File objects to the model....")
-
     runner.registerInfo("Removing old OS:Lights and OS:Lights:Definition for office and conference rooms.")
     # Remove old lights definition objects for office and conference rooms
     v_space_types.each do |space_type|
@@ -396,29 +397,29 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
         selected_space_type = lght_space_type_arg_vals[space.name.to_s]
         if (@@office_type_names.include? selected_space_type) || (@@conference_room_type_names.include? selected_space_type)
           space_type.lights.each do |lght|
-            puts 'Remove old lights object ' + lght.name.to_s
+            puts 'Remove old lights object: ' + lght.name.to_s
             lght.remove
           end
         end
       end
     end
 
+    puts '---> Create new lighting schedules from CSV.'
+
+    runner.registerInfo("Adding new OS:Schedule:File objects to the model....")
     v_spaces = model.getSpaces
     v_spaces.each do |space|
-      # puts space.name.to_s
       v_headers.each_with_index do |s_space_name, i|
-        if s_space_name.partition('_').last == space.name.to_s
+        if s_space_name == space.name.to_s
           col = i
-          temp_file_path = model_temp_run_path + file_name_light_sch
+          temp_file_path = file_name_light_sch
           sch_file_name = space.name.to_s + ' lght sch'
           schedule_file = get_os_schedule_from_csv(model, temp_file_path, sch_file_name, col, skip_row = 1)
           schedule_file.setMinutesperItem(@@minute_per_item.to_s)
-          puts schedule_file
           model = add_light(model, space, schedule_file)
         end
       end
     end
-
 
     # report final condition of model
     runner.registerFinalCondition("Finished creating and adding new lighting schedules for #{v_headers.length - 1} spaces.")
