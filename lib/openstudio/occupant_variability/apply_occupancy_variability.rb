@@ -41,9 +41,9 @@ module OpenStudio
         elsif lod == 2
           OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
           if occ_sch_file_dir.nil?
-            OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule', '__SKIP__', false)
+            OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule_from_occupant_count', '__SKIP__', false)
           else
-            OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule', 'occ_schedule_dir', occ_sch_file_dir)
+            OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule_from_occupant_count', 'occ_schedule_dir', occ_sch_file_dir)
           end
           if occ_sch_file_dir.nil?
             OpenStudio::Extension.set_measure_argument(osw, 'create_mels_schedule_from_occupant_count', '__SKIP__', false)
@@ -52,7 +52,7 @@ module OpenStudio
           end
         elsif lod == 3
           OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
-          OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule', '__SKIP__', false)
+          OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule_from_occupant_count', '__SKIP__', false)
           OpenStudio::Extension.set_measure_argument(osw, 'create_mels_schedule_from_occupant_count', '__SKIP__', false)
           OpenStudio::Extension.set_measure_argument(osw, 'add_demand_controlled_ventilation', '__SKIP__', false)
           OpenStudio::Extension.set_measure_argument(osw, 'update_hvac_setpoint_schedule', '__SKIP__', false)

@@ -5,7 +5,7 @@
 
 # require 'C:/openstudio-2.7.0/Ruby/openstudio.rb'
 # start the measure
-class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
+class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
 
   # Class variables
   @@v_space_args = Hash.new
@@ -102,7 +102,7 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     # Measure name should be the title case of the class name.
-    return 'Create Lighting Schedule'
+    return 'Create Lighting Schedule from Occupancy Count'
   end
 
   # human readable description
@@ -429,4 +429,4 @@ class CreateLightingSchedule < OpenStudio::Measure::ModelMeasure
 end
 
 # register the measure to be used by the application
-CreateLightingSchedule.new.registerWithApplication
+CreateLightingScheduleFromOccupantCount.new.registerWithApplication
