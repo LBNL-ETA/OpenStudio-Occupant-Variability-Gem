@@ -39,6 +39,8 @@ module OpenStudio
         osw[:name] = "Occupancy Variability LOD#{lod.to_s}"
         osw[:description] = 'Occupancy variability at level of detail ' + lod.to_s
 
+        puts occ_sch_file_dir
+
         if lod == 1
         elsif lod == 2
           OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
