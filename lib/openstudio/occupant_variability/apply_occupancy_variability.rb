@@ -31,6 +31,8 @@ module OpenStudio
       def create_osw(seed_file_dir, weather_file_dir, lod = 1, occ_sch_file_dir = nil)
         # TODO:Add generate DOE prototype model later
         puts '------> Applying occupant variability measures to the OSW...'
+        puts @@osw
+
         osw = Marshal.load(Marshal.dump(@@osw))
         osw[:seed_file] = seed_file_dir
         osw[:weather_file] = weather_file_dir
