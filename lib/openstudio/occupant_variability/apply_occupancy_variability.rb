@@ -39,7 +39,9 @@ module OpenStudio
         osw[:name] = "Occupancy Variability LOD#{lod.to_s}"
         osw[:description] = 'Occupancy variability at level of detail ' + lod.to_s
 
+        puts '--------------------'
         puts occ_sch_file_dir
+        puts occ_sch_file_dir.nil?
 
         if lod == 1
         elsif lod == 2
