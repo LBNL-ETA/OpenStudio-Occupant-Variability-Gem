@@ -9,7 +9,7 @@
             "arguments": {}
         },
         {
-            "measure_dir_name": "create_lighting_schedule",
+            "measure_dir_name": "create_lighting_schedule_from_occupant_count",
             "arguments": {}
         },
         {

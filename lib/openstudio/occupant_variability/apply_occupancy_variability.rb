@@ -41,7 +41,7 @@ module OpenStudio
 
         puts '--------------------'
         puts occ_sch_file_dir
-        puts occ_sch_file_dir.nil?
+        puts File.file?occ_sch_file_dir
 
         if lod == 1
         elsif lod == 2
