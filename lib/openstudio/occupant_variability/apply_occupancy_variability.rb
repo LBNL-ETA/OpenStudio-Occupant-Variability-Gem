@@ -46,12 +46,12 @@ module OpenStudio
         if lod == 1
         elsif lod == 2
           OpenStudio::Extension.set_measure_argument(osw, 'Occupancy_Simulator', '__SKIP__', false)
-          if occ_sch_file_dir.nil?
+          if File.file?occ_sch_file_dir
             OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule_from_occupant_count', '__SKIP__', false)
           else
             OpenStudio::Extension.set_measure_argument(osw, 'create_lighting_schedule_from_occupant_count', 'occ_schedule_dir', occ_sch_file_dir)
           end
-          if occ_sch_file_dir.nil?
+          if File.file?occ_sch_file_dir
             OpenStudio::Extension.set_measure_argument(osw, 'create_mels_schedule_from_occupant_count', '__SKIP__', false)
           else
             OpenStudio::Extension.set_measure_argument(osw, 'create_mels_schedule_from_occupant_count', 'occ_schedule_dir', occ_sch_file_dir)
