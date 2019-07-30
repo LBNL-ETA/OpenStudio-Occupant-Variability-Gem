@@ -313,7 +313,8 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
     if File.file?(occ_schedule_dir)
       # Check if user provided a occupancy schedule CSV file
       csv_file = occ_schedule_dir
-      runner.registerInitialCondition('Use user provided occupancy schedule file at: ' + csv_file)
+      puts 'Use user provided occupancy schedule file at: ' + csv_file.to_s
+      runner.registerInitialCondition('Use default occupancy schedule file at: ' + csv_file.to_s)
     else
       # Check if schedule file at several places
       # 1. Default fils path when run with OSW in CLI
@@ -338,7 +339,8 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
       else
         csv_file = ''
       end
-      runner.registerInitialCondition('Use default occupancy schedule file at: ' + csv_file)
+      puts 'Use default occupancy schedule file at: ' + csv_file.to_s
+      runner.registerInitialCondition('Use default occupancy schedule file at: ' + csv_file.to_s)
     end
 
     # Get the spaces with occupancy count schedule available

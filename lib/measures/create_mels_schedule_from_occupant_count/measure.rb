@@ -299,17 +299,34 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
 
     if File.file?(occ_schedule_dir)
       csv_file = occ_schedule_dir
-      puts 'Use user provided occupancy schedule file at: ' + csv_file
+      puts 'Use user provided occupancy schedule file at: ' + csv_file.to_s
+      runner.registerInitialCondition('Use default occupancy schedule file at: ' + csv_file.to_s)
     else
       # Check if schedule file at several places
-      csv_path_lookup_1 = File.expand_path("../..", model_temp_run_path) + "/files/#{@@default_occupant_schedule_filename}" # Default path when run with OSW in CLI
-      csv_path_lookup_2 = File.expand_path("../../..", model_temp_run_path) + "/resources/files/#{@@default_occupant_schedule_filename}" # Default path when run with OpenStudio GUI
+      # 1. Default fils path when run with OSW in CLI
+      csv_path_lookup_1 = File.expand_path("../..", measure_root_path) + "/files/#{@@default_occupant_schedule_filename}"
+      puts '#' * 80
+      puts csv_path_lookup_1
+      # 2. Default path when run with OpenStudio CLI
+      csv_path_lookup_2 = File.expand_path("../..", model_temp_run_path) + "/files/#{@@default_occupant_schedule_filename}"
+      puts '#' * 80
+      puts csv_path_lookup_2
+      # 3. Default path when run with OpenStudio GUI
+      csv_path_lookup_3 = File.expand_path("../../..", model_temp_run_path) + "/resources/files/#{@@default_occupant_schedule_filename}"
+      puts '#' * 80
+      puts csv_path_lookup_3
+
       if File.file?(csv_path_lookup_1)
         csv_file = csv_path_lookup_1
       elsif File.file?(csv_path_lookup_2)
         csv_file = csv_path_lookup_2
+      elsif File.file?(csv_path_lookup_3)
+        csv_file = csv_path_lookup_3
+      else
+        csv_file = ''
       end
-      puts 'Use default occupancy schedule file at: ' + csv_file
+      puts 'Use default occupancy schedule file at: ' + csv_file.to_s
+      runner.registerInitialCondition('Use default occupancy schedule file at: ' + csv_file.to_s)
     end
 
     ### Start creating new electrical equipment schedules based on occupancy schedule
