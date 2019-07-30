@@ -367,7 +367,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
 
     runner.registerInfo("Writing new electrical equipment schedules to CSV file.")
     # Write new electrical equipment schedule file to CSV
-    file_name_equip_sch = "#{measure_root_path}/#{@@mels_schedule_CSV_name}"
+    file_name_equip_sch = "#{model_temp_run_path}/#{@@mels_schedule_CSV_name}"
     vcols_to_csv(v_cols, file_name_equip_sch)
 
     # Add new electrical equipment schedule from the CSV file created
