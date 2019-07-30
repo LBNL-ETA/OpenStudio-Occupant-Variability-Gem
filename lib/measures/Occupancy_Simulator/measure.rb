@@ -1074,17 +1074,18 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     all_args[0] = occ_type_arg_vals
 
     # Read obXML file and call obFMU.exe
-    output_path_prefix = measure_root_path + '/OccSimulator_out'
+    file_written_path = File.realpath('./') # Write to the current run folder.
+    output_path_prefix = file_written_path + '/OccSimulator_out'
     puts '&' * 80
     puts File.dirname(output_path_prefix)
     puts File.expand_path("..", File.dirname(output_path_prefix))
 
-    obFMU_xml_file_path = measure_root_path + "/obXML.xml"
-    coSim_xml_file_path = measure_root_path + "/obCoSim.xml"
+    obFMU_xml_file_path = file_written_path + "/obXML.xml"
+    coSim_xml_file_path = file_written_path + "/obCoSim.xml"
 
     # Generate obXML and coSimXML files
-    result_hashes = obXML_builder(model, userLib, measure_root_path, all_args)
-    coSimXML_builder(model, measure_root_path)
+    result_hashes = obXML_builder(model, userLib, file_written_path, all_args)
+    coSimXML_builder(model, file_written_path)
 
     # Command to call obFMU.exe
     # Remove old output file if it exists.

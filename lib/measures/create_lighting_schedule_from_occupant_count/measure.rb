@@ -380,7 +380,7 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
 
     runner.registerInfo("Writing new lighting schedules to CSV file.")
     # Write new lighting schedule file to CSV
-    file_name_light_sch = "#{measure_root_path}/#{@@lighting_schedule_CSV_name}"
+    file_name_light_sch = "#{model_temp_run_path}/#{@@lighting_schedule_CSV_name}"
     vcols_to_csv(v_cols, file_name_light_sch)
 
     # Add new lighting schedule from the CSV file created
