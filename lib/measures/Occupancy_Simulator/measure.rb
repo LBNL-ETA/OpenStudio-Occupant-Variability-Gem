@@ -954,6 +954,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     file_name = File.realpath(file_name)
     raise "File '#{file_name}' does not exist" if !File.exists?(file_name)
     external_file = OpenStudio::Model::ExternalFile::getExternalFile(model, file_name)
+    raise "ExternalFile for '#{file_name}' is not initialized" if external_file.empty?
     external_file = external_file.get
     schedule_file = OpenStudio::Model::ScheduleFile.new(external_file, col, skip_row)
     schedule_file.setName(schedule_name)
