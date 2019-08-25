@@ -952,6 +952,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
   def get_os_schedule_from_csv(file_name, model, schedule_name, col, skip_row)
     puts '---> Try to create schedule:file object...'
     file_name = File.realpath(file_name)
+    raise "File '#{file_name}' does not exist" if !File.exists?(file_name)
     external_file = OpenStudio::Model::ExternalFile::getExternalFile(model, file_name)
     external_file = external_file.get
     schedule_file = OpenStudio::Model::ScheduleFile.new(external_file, col, skip_row)
@@ -1103,7 +1104,12 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     # Run occupancy simulator
     system(measure_resources_path + 'obFMU.exe', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
     runner.registerInfo("Occupancy schedule simulation successfully completed.")
-
+    
+    if !File.exist?(external_csv_path)
+      runner.registerError("external_csv_path '#{external_csv_path}' does not exist")
+      return false
+    end
+    
     # Read schedule back to osm
     runner.registerInfo("Reading stochastic occupancy schedule back to the osm.")
 
