@@ -306,15 +306,20 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
       # 1. Default fils path when run with OSW in CLI
       csv_path_lookup_1 = File.expand_path("../..", measure_root_path) + "/files/#{@@default_occupant_schedule_filename}"
       puts '#' * 80
-      puts csv_path_lookup_1
+      puts "First lookup location: " + csv_path_lookup_1
       # 2. Default path when run with OpenStudio CLI
       csv_path_lookup_2 = File.expand_path("../..", model_temp_run_path) + "/files/#{@@default_occupant_schedule_filename}"
       puts '#' * 80
-      puts csv_path_lookup_2
+      puts "Second lookup location: " + csv_path_lookup_2
       # 3. Default path when run with OpenStudio GUI
       csv_path_lookup_3 = File.expand_path("../../..", model_temp_run_path) + "/resources/files/#{@@default_occupant_schedule_filename}"
       puts '#' * 80
-      puts csv_path_lookup_3
+      puts "Third lookup location: " + csv_path_lookup_3
+      # 4. Generated files folder when run with rspec
+      csv_path_lookup_4 = File.expand_path("..", model_temp_run_path) + "/generated_files/#{@@default_occupant_schedule_filename}"
+      puts '#' * 80
+      puts "Forth lookup location: " + csv_path_lookup_4
+
 
       if File.file?(csv_path_lookup_1)
         csv_file = csv_path_lookup_1
@@ -322,6 +327,8 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
         csv_file = csv_path_lookup_2
       elsif File.file?(csv_path_lookup_3)
         csv_file = csv_path_lookup_3
+      elsif File.file?(csv_path_lookup_4)
+        csv_file = csv_path_lookup_4      
       else
         csv_file = ''
       end
