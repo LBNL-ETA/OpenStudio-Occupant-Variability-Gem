@@ -3,7 +3,6 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-# require 'C:/openstudio-2.7.0/Ruby/openstudio.rb'
 # start the measure
 class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
 
@@ -263,7 +262,7 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
     end
   end
 
-  def get_os_schedule_from_csv(file_name, model, schedule_name, col, skip_row)
+    def get_os_schedule_from_csv(model, file_name, schedule_name, col, skip_row = 0)
     puts '---> Try to create schedule:file object...'
     file_name = File.realpath(file_name)
     raise "File '#{file_name}' does not exist" if !File.exists?(file_name)
