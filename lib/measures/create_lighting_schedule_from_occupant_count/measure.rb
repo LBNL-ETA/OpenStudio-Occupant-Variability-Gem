@@ -263,10 +263,12 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
     end
   end
 
-  def get_os_schedule_from_csv(model, file_name, schedule_name, col, skip_row = 0)
-    # This function creates an OS:Schedule:File from a CSV at specified position
+  def get_os_schedule_from_csv(file_name, model, schedule_name, col, skip_row)
+    puts '---> Try to create schedule:file object...'
     file_name = File.realpath(file_name)
+    raise "File '#{file_name}' does not exist" if !File.exists?(file_name)
     external_file = OpenStudio::Model::ExternalFile::getExternalFile(model, file_name)
+    raise "ExternalFile for '#{file_name}' is not initialized" if external_file.empty?
     external_file = external_file.get
     schedule_file = OpenStudio::Model::ScheduleFile.new(external_file, col, skip_row)
     schedule_file.setName(schedule_name)
