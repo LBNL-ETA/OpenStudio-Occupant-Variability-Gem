@@ -19,6 +19,7 @@
 require 'openstudio'
 require 'time'
 require 'date'
+require 'rbconfig'
 
 
 # start the measure
@@ -1015,6 +1016,23 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     return model
   end
 
+  def os
+    @os ||= (
+      host_os = RbConfig::CONFIG['host_os']
+      case host_os
+      when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+        :windows
+      when /darwin|mac os/
+        :macosx
+      when /linux/
+        :linux
+      when /solaris|bsd/
+        :unix
+      else
+        raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
+      end
+    )
+  end
 
   ##############################################################################
   # define what happens when the measure is run
@@ -1104,13 +1122,30 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
 
     # Run occupancy simulator
     system(measure_resources_path + 'obFMU.exe', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
+
+    if os.to_s == 'windows'
+      runner.registerInfo("Running obFMU on Windows.")
+      puts 'Running obFMU on Windows.'
+      system(measure_resources_path + 'obFMU.exe', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
+    elsif os.to_s == 'macosx'
+      runner.registerInfo("Running obFMU on MacOS.")
+      puts 'Running obFMU on MacOS.'
+      system('chmod +x ' + measure_resources_path + 'obFMU_mac')
+      system(measure_resources_path + 'obFMU_mac', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
+    elsif os.to_s == 'linux'
+      runner.registerInfo("Running obFMU on Linux.")
+      puts 'Running obFMU on Linux.'
+      system('chmod +x ' + measure_resources_path + 'obFMU_linux')
+      system(measure_resources_path + 'obFMU_linux', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
+    end
+
     runner.registerInfo("Occupancy schedule simulation successfully completed.")
-    
+
     if !File.exist?(external_csv_path)
       runner.registerError("external_csv_path '#{external_csv_path}' does not exist")
       return false
     end
-    
+
     # Read schedule back to osm
     runner.registerInfo("Reading stochastic occupancy schedule back to the osm.")
 
