@@ -1119,6 +1119,8 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     puts external_csv_path
 
     # Run occupancy simulator
+    system(measure_resources_path + 'obFMU.exe', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
+
     if os.to_s == 'windows'
       runner.registerInfo("Running obFMU on Windows.")
       puts 'Running obFMU on Windows.'
