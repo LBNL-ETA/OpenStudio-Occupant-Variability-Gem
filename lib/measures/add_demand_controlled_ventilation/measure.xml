@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>add_demand_controlled_ventilation</name>
   <uid>936d8818-73ae-4f9d-9a1f-2e4be37f0ad3</uid>
-  <version_id>60b72f0d-d8d6-49ce-9282-69924fe1491b</version_id>
-  <version_modified>20190129T004430Z</version_modified>
+  <version_id>0ef768f9-c9c7-4c3f-9684-fb161e0de12e</version_id>
+  <version_modified>20191120T193503Z</version_modified>
   <xml_checksum>266557E5</xml_checksum>
   <class_name>AddDemandControlledVentilation</class_name>
   <display_name>Add Demand Controlled Ventilation</display_name>
@@ -83,7 +83,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2F4D1B00</checksum>
+      <checksum>EEDA4188</checksum>
     </file>
   </files>
 </measure>

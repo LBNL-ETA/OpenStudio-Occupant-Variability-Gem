@@ -2,7 +2,7 @@
 
 ###### (Automatically generated documentation)
 
-# Create Lighting Schedule
+# Create Lighting Schedule from Occupancy Count
 
 ## Description
 Replace this text with an explanation of what the measure does in terms that can be understood by a general building professional audience (building owners, architects, engineers, contractors, etc.).  This description will be used to create reports aimed at convincing the owner and/or design team to implement the measure in the actual building design.  For this reason, the description may include details about how the measure would be implemented, along with explanations of qualitative benefits associated with the measure.  It is good practice to include citations in the measure if the description is taken from a known source or if specific benefits are listed.

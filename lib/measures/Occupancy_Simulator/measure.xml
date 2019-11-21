@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>occupancy_simulator</name>
   <uid>dff4c6be-e84f-4340-b948-ea389d5cd8f2</uid>
-  <version_id>480897d0-43b9-4ed8-8521-02f8d299db3f</version_id>
-  <version_modified>20190705T161432Z</version_modified>
+  <version_id>794e11a3-98c9-43cf-9fe4-69cceff91a56</version_id>
+  <version_modified>20191120T193504Z</version_modified>
   <xml_checksum>890F5164</xml_checksum>
   <class_name>OccupancySimulator</class_name>
   <display_name>Occupancy Simulator</display_name>
@@ -39,12 +39,6 @@
   </attributes>
   <files>
     <file>
-      <filename>obFMU.exe</filename>
-      <filetype>exe</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E658D50D</checksum>
-    </file>
-    <file>
       <filename>UserLibrary.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -69,10 +63,10 @@
       <checksum>6C1FB102</checksum>
     </file>
     <file>
-      <filename>obCoSim.xml</filename>
-      <filetype>xml</filetype>
+      <filename>obFMU.exe</filename>
+      <filetype>exe</filetype>
       <usage_type>resource</usage_type>
-      <checksum>EBD3EA1F</checksum>
+      <checksum>DED6EEC4</checksum>
     </file>
     <file>
       <version>
@@ -83,37 +77,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C94153DB</checksum>
+      <checksum>A6861ABB</checksum>
     </file>
     <file>
-      <filename>obXML.xml</filename>
-      <filetype>xml</filetype>
+      <filename>obFMU_linux</filename>
+      <filetype></filetype>
       <usage_type>resource</usage_type>
-      <checksum>8889E05B</checksum>
+      <checksum>01149365</checksum>
     </file>
     <file>
-      <filename>OccSimulator_out.csv</filename>
-      <filetype>csv</filetype>
+      <filename>obFMU_mac</filename>
+      <filetype></filetype>
       <usage_type>resource</usage_type>
-      <checksum>9C0DE44C</checksum>
-    </file>
-    <file>
-      <filename>OccSimulator_out_by_Occupant.csv</filename>
-      <filetype>csv</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>BF0454C3</checksum>
-    </file>
-    <file>
-      <filename>OccSimulator_out_IDF.csv</filename>
-      <filetype>csv</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>EC214418</checksum>
-    </file>
-    <file>
-      <filename>OccSimulator_out_IDF.idf</filename>
-      <filetype>idf</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>09D38BD6</checksum>
+      <checksum>D12A3007</checksum>
     </file>
   </files>
 </measure>

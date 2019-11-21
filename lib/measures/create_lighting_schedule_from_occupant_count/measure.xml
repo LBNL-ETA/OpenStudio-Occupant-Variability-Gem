@@ -2,11 +2,11 @@
   <schema_version>3.0</schema_version>
   <name>create_lighting_schedule_from_occupant_count</name>
   <uid>890283d4-1553-48b6-966b-5afd0ae800b4</uid>
-  <version_id>b2fdc72b-a554-4693-b2d3-a2065231896c</version_id>
-  <version_modified>20190705T162453Z</version_modified>
+  <version_id>b4f5170f-faa0-41e2-bb01-3f7989499dff</version_id>
+  <version_modified>20191120T193504Z</version_modified>
   <xml_checksum>0AE36E42</xml_checksum>
   <class_name>CreateLightingScheduleFromOccupantCount</class_name>
-  <display_name>Create Lighting Schedule From Occupant Count</display_name>
+  <display_name>Create Lighting Schedule from Occupancy Count</display_name>
   <description>Replace this text with an explanation of what the measure does in terms that can be understood by a general building professional audience (building owners, architects, engineers, contractors, etc.).  This description will be used to create reports aimed at convincing the owner and/or design team to implement the measure in the actual building design.  For this reason, the description may include details about how the measure would be implemented, along with explanations of qualitative benefits associated with the measure.  It is good practice to include citations in the measure if the description is taken from a known source or if specific benefits are listed.</description>
   <modeler_description>Replace this text with an explanation for the energy modeler specifically.  It should explain how the measure is modeled, including any requirements about how the baseline model must be set up, major assumptions, citations of references to applicable modeling resources, etc.  The energy modeler should be able to read this description and understand what changes the measure is making to the model and why these changes are being made.  Because the Modeler Description is written for an expert audience, using common abbreviations for brevity is good practice.</modeler_description>
   <arguments>
@@ -72,22 +72,16 @@
       <checksum>00000000</checksum>
     </file>
     <file>
-      <filename>create_lighting_schedule_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>2365441E</checksum>
-    </file>
-    <file>
       <filename>example_model.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>53D14E69</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>C56015EC</checksum>
+      <filename>create_lighting_schedule_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>AFECE2F9</checksum>
     </file>
     <file>
       <version>
@@ -98,7 +92,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D88AE019</checksum>
+      <checksum>99206AE5</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>3EE4EAAF</checksum>
     </file>
   </files>
 </measure>

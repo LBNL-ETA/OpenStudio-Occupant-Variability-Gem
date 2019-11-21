@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_me_ls_schedule_from_occupant_count</name>
   <uid>d91cc3f2-fcfb-4015-b2f7-c23945248a7c</uid>
-  <version_id>07206c8d-d84b-480b-828c-20980b975576</version_id>
-  <version_modified>20190705T162454Z</version_modified>
+  <version_id>23ddcc85-a3a3-4ae7-b584-b9ac5673c7e4</version_id>
+  <version_modified>20191120T193504Z</version_modified>
   <xml_checksum>0EED982D</xml_checksum>
   <class_name>CreateMELsScheduleFromOccupantCount</class_name>
   <display_name>Create MELs Schedule from Occupant Count</display_name>
@@ -92,7 +92,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A7BA91F7</checksum>
+      <checksum>2060A147</checksum>
     </file>
   </files>
 </measure>
