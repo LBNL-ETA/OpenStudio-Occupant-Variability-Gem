@@ -1056,7 +1056,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     runner.registerInfo("Measure_resources_path is: '#{measure_resources_path}'")
 
     # For run in OSW
-    temp_measure_resources_path = File.expand_path("../../..", Dir.pwd + '/') + '/resources/measures/Occupancy_Simulator/resources/'
+    temp_measure_resources_path = File.expand_path("../../..", Dir.pwd + '/') + '/resources/measures/Occupancy_Simulator_os/resources/'
     runner.registerInfo("The temp measure directory is: '#{temp_measure_resources_path}'")
 
     # Load uer-defined library
