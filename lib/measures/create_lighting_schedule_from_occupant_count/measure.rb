@@ -86,6 +86,7 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
       'LargeOffice - Storage',
       'LargeOffice - Stair',
       'WholeBuilding - Lg Office-basement',
+      'OfficeLarge Data Center',
       ''
   ]
 

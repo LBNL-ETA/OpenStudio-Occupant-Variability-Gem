@@ -59,7 +59,6 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
       'SmallOffice - Elec/MechRoom',
       'MediumOffice - Elec/MechRoom',
       'LargeOffice - Elec/MechRoom'
-
   ]
   @@v_other_space_types = [
       'Office Attic',
@@ -94,6 +93,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
       'LargeOffice - Storage',
       'LargeOffice - Stair',
       'WholeBuilding - Lg Office-basement',
+      'OfficeLarge Data Center',
       ''
   ]
 

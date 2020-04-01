@@ -88,6 +88,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
       'LargeOffice - Storage',
       'LargeOffice - Stair',
       'WholeBuilding - Lg Office-basement',
+      'OfficeLarge Data Center',
       ''
   ]
 
