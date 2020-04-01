@@ -27,6 +27,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
       'WholeBuilding - Sm Office',
       'WholeBuilding - Md Office',
       'WholeBuilding - Lg Office',
+      'WholeBuilding - Lg Office-others',
       'Office',
       'ClosedOffice',
       'OpenOffice',
@@ -86,6 +87,7 @@ class CreateMELsScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasure
       'LargeOffice - Lobby',
       'LargeOffice - Storage',
       'LargeOffice - Stair',
+      'WholeBuilding - Lg Office-basement',
       ''
   ]
 

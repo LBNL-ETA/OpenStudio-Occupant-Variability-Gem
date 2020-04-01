@@ -25,6 +25,7 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
       'WholeBuilding - Sm Office',
       'WholeBuilding - Md Office',
       'WholeBuilding - Lg Office',
+      'WholeBuilding - Lg Office-others',
       'Office',
       'ClosedOffice',
       'OpenOffice',
@@ -84,6 +85,7 @@ class CreateLightingScheduleFromOccupantCount < OpenStudio::Measure::ModelMeasur
       'LargeOffice - Lobby',
       'LargeOffice - Storage',
       'LargeOffice - Stair',
+      'WholeBuilding - Lg Office-basement',
       ''
   ]
 
