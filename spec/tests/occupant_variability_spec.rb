@@ -97,7 +97,7 @@ RSpec.describe OpenStudio::OccupantVariability do
         {
             "measure_type" => "OpenStudio",
             "measure_content" => {
-                "measure_dir_name" => "create_mels_schedule_from_occupant_count_os",
+                "measure_dir_name" => "create_mels_schedule_from_occupant_count",
                 "arguments" => {
                 }
             }

@@ -32,6 +32,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
       'WholeBuilding - Sm Office',
       'WholeBuilding - Md Office',
       'WholeBuilding - Lg Office',
+      'WholeBuilding - Lg Office-others',
       'Office',
       'ClosedOffice',
       'OpenOffice',
@@ -92,6 +93,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
       'LargeOffice - Lobby',
       'LargeOffice - Storage',
       'LargeOffice - Stair',
+      'WholeBuilding - Lg Office-basement',
       ''
   ]
 
@@ -1056,7 +1058,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     runner.registerInfo("Measure_resources_path is: '#{measure_resources_path}'")
 
     # For run in OSW
-    temp_measure_resources_path = File.expand_path("../../..", Dir.pwd + '/') + '/resources/measures/Occupancy_Simulator_os/resources/'
+    temp_measure_resources_path = File.expand_path("../../..", Dir.pwd + '/') + '/resources/measures/Occupancy_Simulator/resources/'
     runner.registerInfo("The temp measure directory is: '#{temp_measure_resources_path}'")
 
     # Load uer-defined library
@@ -1116,9 +1118,9 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
       runner.registerInfo("Deleted old output occ sch file at '#{external_csv_path}'")
     end
 
-    puts external_csv_path
-
     # Run occupancy simulator
+    # system(measure_resources_path + 'obFMU.exe', obFMU_xml_file_path, output_path_prefix, coSim_xml_file_path)
+
     if os.to_s == 'windows'
       runner.registerInfo("Running obFMU on Windows.")
       puts 'Running obFMU on Windows.'
@@ -1136,6 +1138,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     end
 
     runner.registerInfo("Occupancy schedule simulation successfully completed.")
+    runner.registerInfo("Occupancy schedule file generated at: #{external_csv_path}")
     
     if !File.exist?(external_csv_path)
       runner.registerError("external_csv_path '#{external_csv_path}' does not exist")
@@ -1164,7 +1167,7 @@ class OccupancySimulator < OpenStudio::Measure::ModelMeasure
     model.getSpaces.each do |space|
       model = set_schedule_for_people(model, space.name.to_s, external_csv_path, userLib, all_args)
     end
-
+    runner.registerInfo("Created Schedule:File and mapped to spaces.")
     runner.registerInfo("Occupancy schedule updated.")
     # report final condition of model
 
