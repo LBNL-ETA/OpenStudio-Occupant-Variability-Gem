@@ -11,6 +11,12 @@ This gem contains methods to improve the modeling assumption by introducing occu
 This gem is created based on [openstudio-extension-gem](https://github.com/NREL/openstudio-extension-gem). The contents and directory follow the same structure.
 
 
+## License
+
+See [license.txt](License.txt) for details.
+
+See [this disclaimer page](https://www.lbl.gov/disclaimers/) for more Privacy, Security, Copyright, Disclaimers, and Accessibility Information
+
 ## Installation
 
 #### 1. Install Ruby and OpenStudio.
