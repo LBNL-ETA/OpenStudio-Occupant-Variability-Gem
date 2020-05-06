@@ -1,12 +1,15 @@
 module OpenStudio
   module OccupantVariability
     class OccupancyVariabilityApplier
+      # TODO: Update this class as needed
 
       # class level variables
       @@instance_lock = Mutex.new
       @@osw = nil
 
       def initialize(baseline_osw_dir, files_dir)
+
+        occ_var_instance = OpenStudio::OccupantVariability::Extension.new
         # do initialization of class variables in thread safe way
         @@instance_lock.synchronize do
           if @@osw.nil?
@@ -23,6 +26,7 @@ module OpenStudio
             # configures OSW with extension gem paths for measures and files, all extension gems must be
             # required before this
             @@osw = OpenStudio::Extension.configure_osw(@@osw)
+
           end
         end
       end
