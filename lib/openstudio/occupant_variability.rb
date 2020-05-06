@@ -37,10 +37,6 @@ require 'openstudio/extension'
 require 'openstudio-standards'
 
 require 'openstudio/occupant_variability/extension'
-require 'openstudio/occupant_variability/occupant_variability_model'
-require 'openstudio/occupant_variability/apply_occupancy_variability'
-require 'openstudio/occupant_variability/rake_task'
-require 'openstudio/occupant_variability/runner'
 require 'openstudio/occupant_variability/version'
 
 
@@ -53,11 +49,7 @@ module OpenStudio
 
         @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
       end
-
-      # TODO: add methods for the OccupantVariability class
-      #
     end
 
-    # TODO: add method for the OccupantVariability module
   end
 end
