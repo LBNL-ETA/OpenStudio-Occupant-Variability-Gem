@@ -9,7 +9,7 @@ if allow_local && File.exists?('../OpenStudio-extension-gem')
   # gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'develop'
   gem 'openstudio-extension', path: '../OpenStudio-extension-gem'
 else
-  gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', tag: 'v0.1.1'
+  gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', tag: 'v0.1.6'
 end
 
 # if allow_local && File.exists?('../OpenStudio-Standards')
