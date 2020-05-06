@@ -24,8 +24,6 @@
 # measures tests
 lib/measures/.rubocop.yml
 lib/measures/test_results/*
-lib/measures/Occupancy_Simulator_os/measure.xml
-lib/measures/Occupancy_Simulator_os/measure.xml
 lib/measures/Occupancy_Simulator_os/resources/obCoSim.xml
 lib/measures/Occupancy_Simulator_os/resources/obXML.xml
 lib/measures/Occupancy_Simulator_os/resources/OccSimulator_out.csv
@@ -34,7 +32,6 @@ lib/measures/Occupancy_Simulator_os/resources/OccSimulator_out_IDF.csv
 lib/measures/Occupancy_Simulator_os/resources/OccSimulator_out_IDF.idf
 lib/measures/Occupancy_Simulator_os/resources/OccSimulator_out_IDF.idf
 lib/measures/Occupancy_Simulator_os/resources/OccSimulator_out_IDF.idf
-lib/measures/Occupancy_Simulator_os/measure.xml
 lib/files/OccSimulator_out_IDF.csv
 lib/files/sch_light.csv
 lib/files/sch_MELs.csv
