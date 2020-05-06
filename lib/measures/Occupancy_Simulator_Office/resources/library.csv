@@ -1,9 +1,9 @@
 --- Space Rules ---,,,,,,,,,
 Office Type 1,Default Value,Office Core,Default Value,Office Type 3,Default Value,Office Top Floor,Default Value,Office Type 5,Default Value
-Office: Occupancy Density [m2/person],12.2,Office: Occupancy Density [m2/person],16.59,Office: Occupancy Density [m2/person],20,Office: Occupancy Density [m2/person],22,Office: Occupancy Density [m2/person],999
-Office: occupant percentage - Manager [%],10,Office: occupant percentage - Manager [%],0,Office: occupant percentage - Manager [%],0,Office: occupant percentage - Manager [%],0,Office: occupant percentage - Manager [%],0
-Office: occupant percentage - Adminitrator [%],20,Office: occupant percentage - Adminitrator [%],0,Office: occupant percentage - Adminitrator [%],0,Office: occupant percentage - Adminitrator [%],0,Office: occupant percentage - Adminitrator [%],0
-Office: occupant percentage - Regular staff [%],70,Office: occupant percentage - Regular staff [%],100,Office: occupant percentage - Regular staff [%],100,Office: occupant percentage - Regular staff [%],100,Office: occupant percentage - Regular staff [%],100
+Office: Occupancy Density [m2/person],12.2,Office: Occupancy Density [m2/person],8,Office: Occupancy Density [m2/person],5,Office: Occupancy Density [m2/person],22,Office: Occupancy Density [m2/person],999
+Office: occupant percentage - Manager [%],10,Office: occupant percentage - Manager [%],10,Office: occupant percentage - Manager [%],15,Office: occupant percentage - Manager [%],0,Office: occupant percentage - Manager [%],0
+Office: occupant percentage - Adminitrator [%],20,Office: occupant percentage - Adminitrator [%],20,Office: occupant percentage - Adminitrator [%],20,Office: occupant percentage - Adminitrator [%],0,Office: occupant percentage - Adminitrator [%],0
+Office: occupant percentage - Regular staff [%],70,Office: occupant percentage - Regular staff [%],70,Office: occupant percentage - Regular staff [%],65,Office: occupant percentage - Regular staff [%],100,Office: occupant percentage - Regular staff [%],100
 Meeting Room Type 1,Default Value,Meeting Room Type 2,Default Value,Meeting Room Type 3,Default Value,Meeting Room Type 4,Default Value,Meeting Room Type 5,Default Value
 Meeting Room: minimum number of meeting per day,2,Meeting Room: minimum number of meeting per day,3,Meeting Room: minimum number of meeting per day,2,Meeting Room: minimum number of meeting per day,2,Meeting Room: minimum number of meeting per day,2
 Meeting Room: maximum number of meeting per day,6,Meeting Room: maximum number of meeting per day,6,Meeting Room: maximum number of meeting per day,6,Meeting Room: maximum number of meeting per day,6,Meeting Room: maximum number of meeting per day,6
@@ -17,7 +17,7 @@ Meeting Room: probability of 120-min meetings [%],5,Meeting Room: probability of
 Manager: typical arrival time [hh:mm],8:30,,,,,,,,
 Manager: arrival time variation [min],30,,,,,,,,
 Manager: typical departure time [hh:mm],17:30,,,,,,,,
-Manager: departure time variation [min],30,,,,,,,,
+Manager: arrival time variation [min],30,,,,,,,,
 Manager: typical short-term leaving [hh:mm],12:00,,,,,,,,
 Manager: short-term leaving variation [min],30,,,,,,,,
 Manager: typical short-term leaving duration [min],60,,,,,,,,
@@ -35,7 +35,7 @@ Manager: average stay time -  Outdoor [min],20,,,,,,,,
 Administrator: typical arrival time [hh:mm],8:30,,,,,,,,
 Administrator: arrival time variation [min],30,,,,,,,,
 Administrator: typical departure time [hh:mm],17:30,,,,,,,,
-Administrator: departure time variation [min],30,,,,,,,,
+Administrator: arrival time variation [min],30,,,,,,,,
 Administrator: typical short-term leaving [hh:mm],12:00,,,,,,,,
 Administrator: short-term leaving variation [min],30,,,,,,,,
 Administrator: typical short-term leaving duration [min],60,,,,,,,,
@@ -53,7 +53,7 @@ Administrator: average stay time -  Outdoor [min],20,,,,,,,,
 Regular Staff: typical arrival time [hh:mm],8:30,,,,,,,,
 Regular Staff: arrival time variation [min],30,,,,,,,,
 Regular Staff: typical departure time [hh:mm],17:30,,,,,,,,
-Regular Staff: departure time variation [min],30,,,,,,,,
+Regular Staff: arrival time variation [min],30,,,,,,,,
 Regular Staff: typical short-term leaving [hh:mm],12:00,,,,,,,,
 Regular Staff: short-term leaving variation [min],30,,,,,,,,
 Regular Staff: typical short-term leaving duration [min],60,,,,,,,,
@@ -69,16 +69,16 @@ Regular Staff: average stay time -  Auxiliary rooms [min],10,,,,,,,,
 Regular Staff: percent of time in space -  Outdoor [%],5,,,,,,,,
 Regular Staff: average stay time -  Outdoor [min],20,,,,,,,,
  --- Holiday Rules ---,Default Value,,,,,,,,
-US Holiday: New Year's Day,2018-01-01,,,,,,,,
-"US Holiday: Martin Luther King, Jr. Day",2018-01-18,,,,,,,,
-US Holiday: George Washington's Birthday,2018-02-15,,,,,,,,
-US Holiday: Memorial Day,2018-05-30,,,,,,,,
-US Holiday: Independence Day,2018-07-04,,,,,,,,
-US Holiday: Labor Day,2018-09-05,,,,,,,,
-US Holiday: Columbus Day,2018-10-10,,,,,,,,
-US Holiday: Veterans Day,2018-11-11,,,,,,,,
-US Holiday: Thanksgiving Day,2018-11-24,,,,,,,,
-US Holiday: Christmas Day,2018-12-25,,,,,,,,
+US Holiday: New Year's Day,1/1/2018,,,,,,,,
+"US Holiday: Martin Luther King, Jr. Day",1/18/2018,,,,,,,,
+US Holiday: George Washington's Birthday,2/15/2018,,,,,,,,
+US Holiday: Memorial Day,5/30/2018,,,,,,,,
+US Holiday: Independence Day,7/4/2018,,,,,,,,
+US Holiday: Labor Day,9/5/2018,,,,,,,,
+US Holiday: Columbus Day,10/10/2018,,,,,,,,
+US Holiday: Veterans Day,11/11/2018,,,,,,,,
+US Holiday: Thanksgiving Day,11/24/2018,,,,,,,,
+US Holiday: Christmas Day,12/25/2018,,,,,,,,
 Custom Holiday: Custom Holiday 1,,,,,,,,,
 Custom Holiday: Custom Holiday 2,,,,,,,,,
 Custom Holiday: Custom Holiday 3,,,,,,,,,
